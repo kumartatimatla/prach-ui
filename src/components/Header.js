@@ -1,6 +1,7 @@
 import { Button, Image } from "@nextui-org/react";
 import React, { useContext, useEffect, useState } from "react";
-import samplImg from "../images/sample_img.png";
+import loginImg from "../images/login.svg";
+import newKnowledge from "../images/new-knowledge.svg";
 import { cn } from "../utils/cn";
 import { AppContext } from "../App";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +39,7 @@ const Header = ({ className }) => {
       className={cn(
         `flex ${
           currentPage === "login" ? "justify-start" : "justify-end "
-        } gap-8 px-20 ${scrolled ? "shadow-md" : "shadow-none"} `,
+        } gap-8 pt-[38px] ${scrolled ? "shadow-md" : "shadow-none"}`,
         className
       )}
     >
@@ -54,21 +55,16 @@ const Header = ({ className }) => {
         <>
           <Button
             onClick={() => navigate("/")}
-            className="bg-transparent p-0"
+            className="bg-transparent p-0 redHatMedium text-[16px] text-[#000000] leading-[21px]"
             startContent={
-              <Image src={samplImg} alt="sample image" className="h-5 w-5" />
+              <Image
+                src={newKnowledge}
+                alt="new knowledge"
+                className="h-[20px] w-[23px] rounded-none"
+              />
             }
           >
             New Knowledge
-          </Button>
-          <Button
-            onClick={() => navigate("/history")}
-            className="bg-transparent p-0"
-            startContent={
-              <Image src={samplImg} alt="sample image" className="h-5 w-5" />
-            }
-          >
-            History
           </Button>
           {Object.keys(signerData).length > 0 && signerData?.verified_email ? (
             <span className="flex justify-center items-center gap-1">
@@ -101,12 +97,16 @@ const Header = ({ className }) => {
           ) : (
             <Button
               onClick={() => navigate("/login/?page=login")}
-              className="bg-transparent p-0"
+              className="bg-transparent p-0  redHatMedium text-[16px] text-[#000000] leading-[21px]"
               startContent={
-                <Image src={samplImg} alt="sample image" className="h-5 w-5" />
+                <Image
+                  src={loginImg}
+                  alt="login image"
+                  className="h-[20px] w-[23px] rounded-none"
+                />
               }
             >
-              Sign in
+              Log in
             </Button>
           )}
         </>

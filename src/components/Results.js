@@ -16,6 +16,8 @@ import thumbsUpOutlined from "../images/thumbs_up_outline.png";
 import thumbsUpFilled from "../images/thumbs_up_filled.png";
 import thumbsDownOutlined from "../images/thumbs_down_outline.png";
 import thumbsDownFilled from "../images/thumbs_down_filled.png";
+import Feedback from "./Feedback";
+import Sidebar from "./Sidebar";
 
 const Results = () => {
   const context = useContext(AppContext);
@@ -72,9 +74,14 @@ const Results = () => {
   };
 
   const handleFeedbackModal = () => {};
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   return (
     <div className="px-8 my-20">
+      <Sidebar />
       <Modal
         backdrop="blur"
         size="2xl"
@@ -130,27 +137,6 @@ const Results = () => {
             <div data-container="answer" className="text-base font-normal">
               <AnswerComponent answer={item.answer} obj={item} />
             </div>
-            {/* <span className="flex gap-2">
-              <img
-                src={upVote ? thumbsUpFilled : thumbsUpOutlined}
-                alt="Upvote"
-                onClick={handleUpVoteClick}
-                className="w-[20px] h-[20px] cursor-pointer"
-              />
-              <img
-                src={downVote ? thumbsDownFilled : thumbsDownOutlined}
-                alt="Downvote"
-                onClick={handleDownVoteClick}
-                className="w-[20px] h-[20px] cursor-pointer"
-              />
-            </span>
-            <Button
-            onClick={handleFeedbackModal}
-              variant="bordered"
-              className="p-2 text-xs font-bold h-fit border-black"
-            >
-              Submit Feedback
-            </Button> */}
             <Divider className="mb-4 mt-12" />
           </div>
         );

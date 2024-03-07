@@ -1,3 +1,187 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* src/styles/fonts.css */
+
+/* RedHatDisplay-Black */
+@font-face {
+  font-family: "RedHatDisplay-Black";
+  src: url("./fonts/static/RedHatDisplay-Black.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* RedHatDisplay-BlackItalic */
+@font-face {
+  font-family: "RedHatDisplay-BlackItalic";
+  src: url("./fonts/static/RedHatDisplay-BlackItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* RedHatDisplay-Bold */
+@font-face {
+  font-family: "RedHatDisplay-Bold";
+  src: url("./fonts/static/RedHatDisplay-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* RedHatDisplay-BoldItalic */
+@font-face {
+  font-family: "RedHatDisplay-BoldItalic";
+  src: url("./fonts/static/RedHatDisplay-BoldItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* RedHatDisplay-ExtraBold */
+@font-face {
+  font-family: "RedHatDisplay-ExtraBold";
+  src: url("./fonts/static/RedHatDisplay-ExtraBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* RedHatDisplay-ExtraBoldItalic */
+@font-face {
+  font-family: "RedHatDisplay-ExtraBoldItalic";
+  src: url("./fonts/static/RedHatDisplay-ExtraBoldItalic.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* RedHatDisplay-Italic */
+@font-face {
+  font-family: "RedHatDisplay-Italic";
+  src: url("./fonts/static/RedHatDisplay-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* RedHatDisplay-Light */
+@font-face {
+  font-family: "RedHatDisplay-Light";
+  src: url("./fonts/static/RedHatDisplay-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* RedHatDisplay-LightItalic */
+@font-face {
+  font-family: "RedHatDisplay-LightItalic";
+  src: url("./fonts/static/RedHatDisplay-LightItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* RedHatDisplay-Medium */
+@font-face {
+  font-family: "RedHatDisplay-Medium";
+  src: url("./fonts/static/RedHatDisplay-Medium.ttf") format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+
+/* RedHatDisplay-MediumItalic */
+@font-face {
+  font-family: "RedHatDisplay-MediumItalic";
+  src: url("./fonts/static/RedHatDisplay-MediumItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* RedHatDisplay-Regular */
+@font-face {
+  font-family: "RedHatDisplay-Regular";
+  src: url("./fonts/static/RedHatDisplay-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* RedHatDisplay-SemiBold */
+@font-face {
+  font-family: "RedHatDisplay-SemiBold";
+  src: url("./fonts/static/RedHatDisplay-SemiBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* RedHatDisplay-SemiBoldItalic */
+@font-face {
+  font-family: "RedHatDisplay-SemiBoldItalic";
+  src: url("./fonts/static/RedHatDisplay-SemiBoldItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+body {
+  font-family: "RedHatDisplay-Regular";
+}
+
+.redHatBlack {
+  font-family: "RedHatDisplay-Black";
+}
+
+.redHatBlackItalic {
+  font-family: "RedHatDisplay-BlackItalic";
+}
+
+.redHatBold {
+  font-family: "RedHatDisplay-Bold";
+}
+
+.redHatBoldItalic {
+  font-family: "RedHatDisplay-BoldItalic";
+}
+
+.redHatExtraBold {
+  font-family: "RedHatDisplay-ExtraBold";
+}
+
+.redHatExtraBoldItalic {
+  font-family: "RedHatDisplay-ExtraBoldItalic";
+}
+
+.redHatItalic {
+  font-family: "RedHatDisplay-Italic";
+}
+
+.redHatLight {
+  font-family: "RedHatDisplay-Light";
+}
+
+.redHatLightItalic {
+  font-family: "RedHatDisplay-LightItalic";
+}
+
+.redHatMedium {
+  font-family: "RedHatDisplay-Medium";
+}
+
+.redHatMediumItalic {
+  font-family: "RedHatDisplay-MediumItalic";
+}
+
+.redHatRegular {
+  font-family: "RedHatDisplay-Regular";
+}
+
+.redHatSemiBold {
+  font-family: "RedHatDisplay-SemiBold";
+}
+
+.redHatSemiBoldItalic {
+  font-family: "RedHatDisplay-SemiBoldItalic";
+}
+
+.sidebarBtn::after {
+  content: "";
+  width: 2px;
+  height: 20px;
+  background-color: #464646;
+  position: absolute;
+  right: -4px;
+}

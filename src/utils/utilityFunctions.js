@@ -46,6 +46,8 @@ export const handleSearch = async (ctx, navigate, prompt = "") => {
         mssgObject.question = questionPrompt;
         mssgObject.answer = outputString;
         mssgObject.viewed = 1000;
+        mssgObject.rating = 0;
+        mssgObject.feedback = "";
         setChatResponse([...chatResponse, mssgObject]);
         chatHistory.unshift(mssgObject);
         setChatHistory(chatHistory);

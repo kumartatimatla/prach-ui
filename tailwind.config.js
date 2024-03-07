@@ -9,7 +9,11 @@ module.exports = {
     "./src/**/*.{html,js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        placeholder: "#717171",
+      },
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

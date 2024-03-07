@@ -2,6 +2,7 @@ import React from "react";
 import samplImg from "../images/sample_img.png";
 import { Card, CardBody, Image } from "@nextui-org/react";
 import { cn } from "../utils/cn";
+import cardSearchArrow from "../images/backward-arrow-cards.svg";
 
 const SuggestionCards = ({
   className,
@@ -16,18 +17,22 @@ const SuggestionCards = ({
       name={title}
       onClick={handleCardClick}
     >
-      <Card className="h-full cursor-pointer">
-        <CardBody className="flex flex-row items-center justify-between gap-3 h-full">
+      <Card className="h-full min-h-[80px] cursor-pointer max-w-[391px] rounded-[14px]">
+        <CardBody className="flex flex-row items-center justify-between gap-3 h-full p-[15px]">
           <span className="flex items-center gap-2">
             <span className="min-w-[20px]">
-              <Image src={samplImg} alt="sample image" className="h-5 w-5" />
+              <Image src={iconSrc} alt="search card" className="rounded-none" />
             </span>
             <span className="flex flex-col">
-              <span className="font-bold text-[14px]">{title}</span>
-              <span className="text-[12px] text-slate-400">{subTitle}</span>
+              <span className="redHatBold text-[16px] leading-[21px]">
+                {title}
+              </span>
+              <span className="redHatMedim font-semibold text-[12px] leading-[16px] text-[#505050]">
+                {subTitle}
+              </span>
             </span>
           </span>
-          <span>&uarr;</span>
+          <Image src={cardSearchArrow} alt="search card" />
         </CardBody>
       </Card>
     </button>

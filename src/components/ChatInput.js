@@ -4,6 +4,8 @@ import { AppContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { handleSearch } from "../utils/utilityFunctions";
 import { cn } from "../utils/cn";
+import upArrow from "../images/backward-arrow.svg";
+import recordIcon from "../images/record-icon.svg";
 
 const ChatInput = ({ className }) => {
   const context = useContext(AppContext);
@@ -33,24 +35,35 @@ const ChatInput = ({ className }) => {
         onChange={(e) => setEnteredPrompt(e.target.value)}
         className="sm:w-[100%] md:w-[80%] xl:w-[60%]"
         classNames={{
-          inputWrapper: ["bg-white", "shadow-lg"],
-          input: ["font-bold"],
+          inputWrapper: ["bg-white", "shadow-lg", "pr-[10px]"],
+          input: [
+            "font-bold",
+            "placeholder:text-placeholder",
+            "placeholder:text-[18px]",
+            "placeholder:leading-[26px]",
+            "redHatMedium",
+            "text-[20px]",
+            "leading-[26px]",
+            "pl-[10px]",
+          ],
         }}
-        placeholder={"How can i help you today? Ask here..."}
-        startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
+        placeholder={"How can i help you today? Ask here…"}
+        // startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
         endContent={
-          <span className="flex">
-            <Button className="min-w-max bg-transparent">&darr;</Button>
+          <span className="flex gap-1">
+            <Button className="min-w-max bg-transparent">
+              <img src={recordIcon} alt="search arrow" />
+            </Button>
             <Button
               disabled={isDisabled}
               onClick={() => handleSearch(context, navigate)}
-              className={`min-w-max ${
+              className={`min-w-max rounded-[11px] ${
                 isDisabled
                   ? "bg-gray-200 opacity-50 cursor-default"
-                  : "bg-gray-300 cursor-pointer"
+                  : "bg-[#EBEBEB] cursor-pointer"
               } `}
             >
-              &uarr;
+              <img src={upArrow} alt="search arrow" />
             </Button>
           </span>
         }

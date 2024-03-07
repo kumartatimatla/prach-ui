@@ -41,7 +41,7 @@ const Footer = ({ className }) => {
     <footer
       id="footer"
       className={cn(
-        "text-[12px] sm:text-sm flex justify-between px-20 py-4",
+        "text-[12px] sm:text-[14px] leading-[18px] flex justify-between px-20 py-4 text-[#4A4A4A] redHatMedium font-semibold",
         className
       )}
     >

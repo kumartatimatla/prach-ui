@@ -3,11 +3,12 @@ import React, { useContext, useState } from "react";
 import sidebarIcon from "../images/sidebar-arrow.svg";
 import logo from "../images/logo.svg";
 import rightArrowBold from "../images/right-arrow-bold.svg";
-import { Divider } from "@nextui-org/react";
+import { Button, Divider } from "@nextui-org/react";
 import loginImg from "../images/login-image-guest.svg";
 import { AppContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import FaqAccordion from "./FaqAccordion";
+import newKnowledge from "../images/new-knowledge.svg";
 
 const Sidebar = () => {
   const context = useContext(AppContext);
@@ -55,7 +56,7 @@ const Sidebar = () => {
                 <img src={rightArrowBold} alt="login arrow" />
               </span>
             )}
-            <span className="flex gap-1">
+            <span className="flex gap-1 cursor-pointer">
               <span className="w-[20px] h-[20px]">
                 <img
                   src={signerData?.picture ? signerData?.picture : loginImg}
@@ -82,6 +83,24 @@ const Sidebar = () => {
         <Divider className="mt-[16px] bg-[#D5D5D5]" />
         <div className="mt-[15px]">
           <FaqAccordion />
+        </div>
+        <div className="mt-[48px]">
+          <span className="text-[12px] leading-[14px] redHatMedium text-[#646464]">
+            Start a new knowledge conversation
+          </span>
+          <Button
+            onClick={() => navigate("/")}
+            className="bg-white border border-[#DDDDDD] rounded-[8px] w-full p-0 redHatMedium text-[16px] text-[#000000] leading-[21px] mt-[12px] h-[52px]"
+            startContent={
+              <img
+                src={newKnowledge}
+                alt="new knowledge"
+                className="h-[20px] w-[23px]"
+              />
+            }
+          >
+            New Knowledge
+          </Button>
         </div>
       </div>
     </div>

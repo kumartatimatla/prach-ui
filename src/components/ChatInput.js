@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { handleSearch } from "../utils/utilityFunctions";
 import { cn } from "../utils/cn";
 import upArrow from "../images/backward-arrow.svg";
+import upArrowWhite from "../images/up-arrow-white.svg";
 import recordIcon from "../images/record-icon.svg";
+import attachmentIcon from "../images/attachment-icon.svg";
 
 const ChatInput = ({ className }) => {
   const context = useContext(AppContext);
@@ -50,20 +52,26 @@ const ChatInput = ({ className }) => {
         placeholder={"How can i help you today? Ask here…"}
         // startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
         endContent={
-          <span className="flex gap-1">
-            <Button className="min-w-max bg-transparent">
+          <span className="flex gap-5">
+            <Button className="min-w-max bg-transparent p-0">
               <img src={recordIcon} alt="search arrow" />
+            </Button>
+            <Button className="min-w-max bg-transparent p-0">
+              <img src={attachmentIcon} alt="search arrow" />
             </Button>
             <Button
               disabled={isDisabled}
               onClick={() => handleSearch(context, navigate)}
               className={`min-w-max rounded-[11px] ${
                 isDisabled
-                  ? "bg-gray-200 opacity-50 cursor-default"
-                  : "bg-[#EBEBEB] cursor-pointer"
+                  ? "bg-[#EBEBEB] cursor-default"
+                  : "bg-[#000000] cursor-pointer"
               } `}
             >
-              <img src={upArrow} alt="search arrow" />
+              <img
+                src={isDisabled ? upArrow : upArrowWhite}
+                alt="search arrow"
+              />
             </Button>
           </span>
         }

@@ -2,6 +2,8 @@ import { Button } from "@nextui-org/react";
 import { useState } from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import likeOutlined from "../images/like-outline.svg";
+import disLikeOutlined from "../images/dislike-outline.svg";
 
 const AnswerComponent = ({ answer, obj }) => {
   const [displayedText, setDisplayedText] = useState(
@@ -31,23 +33,33 @@ const AnswerComponent = ({ answer, obj }) => {
     <div>
       <Markdown rehypePlugins={[rehypeRaw]}>{displayedText}</Markdown>
       {showMore && (
-        <Button
-          className="redHatSemiBold min-h-fit h-fit px-[15px] py-[10px] bg-white shadow-md border border-[#DDDDDD]"
-          onClick={handleShowMore}
-        >
-          Show More
-          <sapn className="flex">
-            <div
-              className={"w-[5px] h-[5px] rounded-full bg-[#ff659b] mr-[2px]"}
-            ></div>
-            <div
-              className={"w-[5px] h-[5px] rounded-full bg-[#52e3ff] mr-[2px]"}
-            ></div>
-            <div
-              className={"w-[5px] h-[5px] rounded-full bg-[#a3a3a3] mr-[2px]"}
-            ></div>
-          </sapn>
-        </Button>
+        <>
+          <div className="flex gap-3 mt-[15px] mb-[26px]">
+            <img src={likeOutlined} alt="like" className="cursor-pointer" />
+            <img
+              src={disLikeOutlined}
+              alt="dislike"
+              className="cursor-pointer"
+            />
+          </div>
+          <Button
+            className="redHatSemiBold min-h-fit h-fit px-[15px] py-[10px] bg-white shadow-md border border-[#DDDDDD]"
+            onClick={handleShowMore}
+          >
+            Show More
+            <sapn className="flex">
+              <div
+                className={"w-[5px] h-[5px] rounded-full bg-[#ff659b] mr-[2px]"}
+              ></div>
+              <div
+                className={"w-[5px] h-[5px] rounded-full bg-[#52e3ff] mr-[2px]"}
+              ></div>
+              <div
+                className={"w-[5px] h-[5px] rounded-full bg-[#a3a3a3] mr-[2px]"}
+              ></div>
+            </sapn>
+          </Button>
+        </>
       )}
     </div>
   );

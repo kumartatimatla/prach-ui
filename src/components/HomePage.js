@@ -12,7 +12,7 @@ import { handleSearch } from "../utils/utilityFunctions";
 
 const HomePage = ({ className }) => {
   const context = useContext(AppContext);
-  const { setCurrentPage } = context;
+  const { setCurrentPage, setActiveFaq, setIsOpenFaqAccordion } = context;
   const navigate = useNavigate();
   const [showMoreCards, setShowMoreCards] = useState(false);
 
@@ -21,7 +21,10 @@ const HomePage = ({ className }) => {
   }, [setCurrentPage]);
 
   const handleCardClick = (e) => {
+    console.log("----", e.currentTarget.name);
     let prompt = e.currentTarget.name;
+    setActiveFaq(prompt);
+    setIsOpenFaqAccordion(true);
     handleSearch(context, navigate, prompt);
   };
 
@@ -31,13 +34,13 @@ const HomePage = ({ className }) => {
         <div className="flex flex-col items-center justify-center">
           <Image src={logo} alt="Prach Logo" className="rounded-none" />
         </div>
-        <h2 className="text-2xl font-bold text-center redHatBold text-[32px] leading-[43px]">
+        <h2 className="text-2xl font-bold text-center redHatBold text-[32px] leading-[43px] w-[60%]">
           Welcome to Prach Knowledge Assistant on Autism!
         </h2>
-        <ChatInput className="w-full" />
+        <ChatInput className="w-[70%]" />
       </div>
       <div className="flex flex-col items-center gap-4">
-        <div className="text-[24px] leading-[31px] text-[#8B8B8B] redHatBold">
+        <div className="text-[24px] leading-[31px] text-[#8B8B8B] redHatBold mt-6">
           Discover the world of Autism
         </div>
         <div className="gap-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">

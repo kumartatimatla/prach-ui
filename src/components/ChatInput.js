@@ -28,12 +28,12 @@ const ChatInput = ({ className }) => {
     }
   };
   return (
-    <div className={cn("flex justify-center", className)}>
+    <div className={cn("flex", className)}>
       <Input
         value={enteredPrompt}
         onKeyDown={handleKeyPress}
         onChange={(e) => setEnteredPrompt(e.target.value)}
-        className="sm:w-[100%] md:w-[80%] xl:w-[60%]"
+        className="w-full"
         classNames={{
           inputWrapper: ["bg-white", "shadow-lg", "pr-[10px]"],
           input: [

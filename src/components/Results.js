@@ -12,12 +12,8 @@ import {
 } from "@nextui-org/react";
 import ChatInput from "./ChatInput";
 import Login from "./Login";
-import thumbsUpOutlined from "../images/thumbs_up_outline.png";
-import thumbsUpFilled from "../images/thumbs_up_filled.png";
-import thumbsDownOutlined from "../images/thumbs_down_outline.png";
-import thumbsDownFilled from "../images/thumbs_down_filled.png";
-import Feedback from "./Feedback";
 import Sidebar from "./Sidebar";
+import loadingLogo from "../images/logo-without-name.svg";
 
 const Results = () => {
   const context = useContext(AppContext);
@@ -28,6 +24,8 @@ const Results = () => {
     checkLogin,
     setCheckLogin,
     signerData,
+    isOpenSidebar,
+    questionPrompt,
   } = context;
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
@@ -45,7 +43,7 @@ const Results = () => {
 
   useEffect(() => {
     if (loading) {
-      const div = document.getElementById("skeleton-loader");
+      const div = document.getElementById("loader");
       div.scrollIntoView({ behavior: "smooth" });
     }
   }, [loading]);
@@ -80,94 +78,74 @@ const Results = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
-    <div className="px-8 my-20">
-      <Sidebar />
-      <Modal
-        backdrop="blur"
-        size="2xl"
-        hideCloseButton
-        className="w-fit"
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        classNames={{
-          backdrop: ["z-[150]"],
-          wrapper: ["z-[150]"],
-        }}
+    <div
+      className={`${!isOpenSidebar ? "flex items-center justify-center" : ""}`}
+    >
+      <div
+        className={`my-20 ${
+          isOpenSidebar
+            ? "ml-[467px] pr-[250px] transition-margin duration-300"
+            : "ml-0 transition-margin duration-400  w-[70%]"
+        } relative `}
       >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalBody className="p-0">
-                <Login onClose={onClose} />
-              </ModalBody>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-      {chatResponse.map((item, i) => {
-        return (
-          <div key={i}>
-            <div
-              id={item.id}
-              className="my-3 text-lg sm:text-2xl md:text-3xl text-black"
-            >
-              {item.question}
-            </div>
-            <div className="flex items-center mb-3">
-              <span className="mr-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75H12a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </span>
-              <div className="w-48 flex justify-between">
-                <span className="text-lg text-gray-500 font-medium ">
-                  Answer
+        <Sidebar />
+
+        <div className="redHatMedium text-[16px] leading-[21px] text-[#6F6F6F]">
+          Discover the world of Autism
+        </div>
+        {chatResponse.map((item, i) => {
+          return (
+            <div key={i}>
+              <div
+                id={item.id}
+                className="redHatBold text-[32px] leading-[189x]"
+              >
+                {item.question}
+              </div>
+              <div className="flex items-center mb-3">
+                <span className="mr-2">
+                  <img src={loadingLogo} alt="loader prach logo" />
                 </span>
+                <div className="w-48 flex justify-between">
+                  <span className="redHatMedium text-[16px] leading-[21px] text-[#6F6F6F]">
+                    Answers:
+                  </span>
+                </div>
+              </div>
+              <div
+                data-container="answer"
+                className="redHatMedium text-black text-[18px] leading-[26px]"
+              >
+                <AnswerComponent answer={item.answer} obj={item} />
+              </div>
+              <Divider className="mb-4 mt-[80px]" />
+            </div>
+          );
+        })}
+        {loading && (
+          <div id="loader" className="flex flex-col gap-2 h-[80vh]">
+            <span className="redHatBold text-[32px] leading-[189x]">
+              {questionPrompt}
+              Why is my ASD child doing stimming?
+            </span>
+            <div className="flex items-center redHatMedium text-[#6F6F6F] text-[16px] leading-[21px] gap-3">
+              <img src={loadingLogo} alt="loader prach logo" />
+              <span>Prach is getting answers</span>
+              <div className="loader">
+                <div className={`circle circle1`}></div>
+                <div className={`circle circle2`}></div>
+                <div className={`circle circle3`}></div>
+                <div className={`circle circle4`}></div>
               </div>
             </div>
-            <div data-container="answer" className="text-base font-normal">
-              <AnswerComponent answer={item.answer} obj={item} />
-            </div>
-            <Divider className="mb-4 mt-12" />
           </div>
-        );
-      })}
-      {loading && (
-        <div className="h-[90vh] my-[20px]">
-          <Skeleton id="skeleton-loader" className={`h-[8%] my-4 rounded-md`} />
-          <div className="flex items-center mb-3">
-            <span className="mr-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75H12a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
-            <span className="text-lg font-medium">Answer</span>
-          </div>
-          <Skeleton
-            // id="skeleton-loader"
-            className={`h-[30%] my-4 rounded-md`}
-          />
-        </div>
-      )}
-      <ChatInput className="fixed z-[100] bottom-[10%] w-[90%]" />
+        )}
+        <ChatInput
+          className={`fixed z-[100] bottom-[10%] w-[60%] ${
+            isOpenSidebar ? "left-[467px]" : ""
+          }`}
+        />
+      </div>
     </div>
   );
 };

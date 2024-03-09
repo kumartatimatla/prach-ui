@@ -6,6 +6,7 @@ import { cn } from "../utils/cn";
 import { AppContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { googleLogout } from "@react-oauth/google";
+import leftArrowBold from "../images/left-arrow-bold.svg";
 
 const Header = ({ className }) => {
   const context = useContext(AppContext);
@@ -46,55 +47,33 @@ const Header = ({ className }) => {
       {currentPage === "login" ? (
         <Button
           onClick={() => navigate("/")}
-          className="bg-transparent p-0 text-[12px]"
-          startContent={<span>&larr;</span>}
+          className="bg-transparent p-0 text-[16px] leading-[21px] redHatMedium"
+          startContent={
+            <img src={leftArrowBold} alt="dicover world of autism" />
+          }
         >
           Discover the world of Autism
         </Button>
       ) : (
         <>
-          <Button
-            onClick={() => navigate("/")}
-            className="bg-transparent p-0 redHatMedium text-[16px] text-[#000000] leading-[21px]"
-            startContent={
-              <Image
-                src={newKnowledge}
-                alt="new knowledge"
-                className="h-[20px] w-[23px] rounded-none"
-              />
-            }
-          >
-            New Knowledge
-          </Button>
-          {Object.keys(signerData).length > 0 && signerData?.verified_email ? (
-            <span className="flex justify-center items-center gap-1">
-              <span className="rounded-full h-[30px] w-[30px] flex justify-center items-center bg-[#0066DB] text-white">
-                {/* {getInitials(signerData?.name) || "kt"} */}
-                {signerData?.picture ? (
-                  <img
-                    style={{
-                      borderRadius: "50%",
-                      height: "30px",
-                      width: "30px",
-                    }}
-                    src={signerData?.picture}
-                    alt="user"
-                  />
-                ) : (
-                  "G"
-                )}
-              </span>
-              <span className="text-sm font-bold">{signerData.name}</span>
-              <Button
-                isIconOnly
-                className="rounded-full min-w-[10px] w-[30px] h-[30px]"
-                // color="primary"
-                onClick={logOut}
-              >
-                &rarr;
-              </Button>
-            </span>
-          ) : (
+          {currentPage !== "results" && (
+            <Button
+              onClick={() => navigate("/")}
+              className="bg-transparent p-0 redHatMedium text-[16px] text-[#000000] leading-[21px]"
+              startContent={
+                <Image
+                  src={newKnowledge}
+                  alt="new knowledge"
+                  className="h-[20px] w-[23px] rounded-none"
+                />
+              }
+            >
+              New Knowledge
+            </Button>
+          )}
+          {!(
+            Object.keys(signerData).length > 0 && signerData?.verified_email
+          ) && (
             <Button
               onClick={() => navigate("/login/?page=login")}
               className="bg-transparent p-0  redHatMedium text-[16px] text-[#000000] leading-[21px]"

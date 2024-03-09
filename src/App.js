@@ -6,6 +6,12 @@ import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import Results from "./components/Results";
 import History from "./components/History";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  useDisclosure,
+} from "@nextui-org/react";
 
 export const AppContext = createContext();
 function App() {
@@ -20,7 +26,10 @@ function App() {
     header: "60px",
     footer: "65px",
   });
-  console.log("signer data", signerData);
+  const [activeFaq, setActiveFaq] = useState("");
+  const [isOpenSidebar, setIsOpenSidebar] = useState(true);
+  const [isOpenFaqAccordion, setIsOpenFaqAccordion] = useState(false);
+  const [questionPrompt, setQuestionPrompt] = useState("");
 
   useEffect(() => {
     const header = document.getElementById("header");
@@ -33,6 +42,18 @@ function App() {
     }
   }, []);
 
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+  useEffect(() => {
+    if (
+      (chatResponse.length === 2 || checkLogin) &&
+      Object.keys(signerData).length < 1
+    ) {
+      setCheckLogin(false);
+      onOpen();
+    }
+  }, [chatResponse, checkLogin]);
+
+  console.log("curr", currentPage);
   return (
     <AppContext.Provider
       value={{
@@ -52,10 +73,40 @@ function App() {
         setScreenMargin,
         chatHistory,
         setChatHistory,
+        activeFaq,
+        setActiveFaq,
+        isOpenSidebar,
+        setIsOpenSidebar,
+        isOpenFaqAccordion,
+        setIsOpenFaqAccordion,
+        questionPrompt,
+        setQuestionPrompt,
       }}
     >
       <div className="flex flex-col min-h-screen relative bg-[#f3f3f385]">
         <Router>
+          <Modal
+            backdrop="blur"
+            size="2xl"
+            hideCloseButton
+            className="w-fit"
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+            classNames={{
+              backdrop: ["z-[150]"],
+              wrapper: ["z-[150]"],
+            }}
+          >
+            <ModalContent>
+              {(onClose) => (
+                <>
+                  <ModalBody className="p-0">
+                    <Login onClose={onClose} />
+                  </ModalBody>
+                </>
+              )}
+            </ModalContent>
+          </Modal>
           <Header
             className={`bg-[#F8F8F8] py-4 px-5 sm:px-10 lg:px-20 fixed w-full top-0 z-50`}
           />

@@ -185,3 +185,52 @@ body {
   position: absolute;
   right: -4px;
 }
+
+.loader {
+  display: inline-block;
+}
+
+.circle {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 2px;
+  animation: bounceAnimation 1s infinite ease-in-out;
+}
+
+.circle1 {
+  background-color: #ff659b;
+  animation-delay: 0.2s;
+}
+
+.circle2 {
+  background-color: #52e3ff;
+  animation-delay: 0.3s;
+}
+
+.circle3 {
+  background-color: #67dd86;
+  animation-delay: 0.4s;
+}
+
+.circle4 {
+  background-color: #a3a3a3;
+  animation-delay: 0.5s;
+}
+
+@keyframes bounceAnimation {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}

@@ -13,23 +13,26 @@ export const handleSearch = async (ctx, navigate, prompt = "") => {
     signerData,
     chatHistory,
     setChatHistory,
+    setQuestionPrompt,
   } = ctx;
   if (chatResponse.length === 2 && Object.keys(signerData).length < 1) {
     setCheckLogin(true);
   } else {
+    console.log("first");
     try {
       setLoading(true);
-      let questionPrompt = "";
+      let questionPromptTemp = "";
       if (prompt) {
-        questionPrompt = prompt;
+        questionPromptTemp = prompt;
       } else if (enteredPrompt) {
-        questionPrompt = enteredPrompt;
+        questionPromptTemp = enteredPrompt;
       }
+      setQuestionPrompt(questionPromptTemp);
       navigate("/results");
       const response = await axios.post(
         "http://54.162.133.116:5001/handle_user_prompt",
         {
-          prompt: questionPrompt,
+          prompt: questionPromptTemp,
           rejectUnauthorized: false,
         },
         {
@@ -43,7 +46,7 @@ export const handleSearch = async (ctx, navigate, prompt = "") => {
         let outputString = result.replace(/\n/g, "<br/>");
         let mssgObject = {};
         mssgObject.id = uuidv4();
-        mssgObject.question = questionPrompt;
+        mssgObject.question = questionPromptTemp;
         mssgObject.answer = outputString;
         mssgObject.viewed = 1000;
         mssgObject.rating = 0;

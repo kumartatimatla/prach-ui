@@ -6,27 +6,28 @@ import likeOutlined from "../images/like-outline.svg";
 import disLikeOutlined from "../images/dislike-outline.svg";
 
 const AnswerComponent = ({ answer, obj }) => {
+  const lastWordStringIndex = answer.substring(0, obj.viewed);
   const [displayedText, setDisplayedText] = useState(
-    answer.substring(0, obj.viewed)
+    answer.substring(0, lastWordStringIndex.lastIndexOf(" "))
   );
-  const [showMore, setShowMore] = useState(answer.length > 1000);
-
+  const [textLength, setTextLength] = useState(
+    lastWordStringIndex.lastIndexOf(" ")
+  );
+  const [showMore, setShowMore] = useState(answer.length > 999);
   const handleShowMore = () => {
-    const nextViewed = obj.viewed + 1000;
-    const substring = answer.substring(obj.viewed, nextViewed);
-    const lastSpaceIndex = substring.lastIndexOf(" ");
+    const nextViewed = textLength + 1000;
+    const substring = answer.substring(0, nextViewed);
+    const lastSpaceIndexInString = substring.lastIndexOf(" ");
 
-    let newViewed;
-    if (lastSpaceIndex > 0) {
-      newViewed = obj.viewed + lastSpaceIndex;
+    if (answer.length - nextViewed < 100) {
+      setDisplayedText(answer.substring(0, answer.length));
+      setShowMore(false);
+      setTextLength(answer.length);
     } else {
-      const nextSpaceIndex = answer.indexOf(" ", nextViewed);
-      newViewed = nextSpaceIndex > 0 ? nextSpaceIndex : nextViewed;
+      setDisplayedText(answer.substring(0, lastSpaceIndexInString));
+      setShowMore(displayedText.length < answer.length);
+      setTextLength(lastSpaceIndexInString);
     }
-
-    setDisplayedText(answer.substring(0, newViewed));
-    setShowMore(newViewed < answer.length);
-    obj.viewed = newViewed;
   };
 
   return (

@@ -11,7 +11,7 @@ import attachmentIcon from "../images/attachment-icon.svg";
 
 const ChatInput = ({ className }) => {
   const context = useContext(AppContext);
-  const { enteredPrompt, setEnteredPrompt } = context;
+  const { enteredPrompt, setEnteredPrompt, chatResponse } = context;
   const navigate = useNavigate();
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -49,7 +49,11 @@ const ChatInput = ({ className }) => {
             "pl-[10px]",
           ],
         }}
-        placeholder={"How can i help you today? Ask here…"}
+        placeholder={`${
+          chatResponse.length > 0
+            ? "Looking for more answers? Ask here…"
+            : "How can i help you today? Ask here…"
+        }`}
         // startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
         endContent={
           <span className="flex gap-5">

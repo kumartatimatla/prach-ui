@@ -15,7 +15,7 @@ const Footer = ({ className }) => {
     { key: "case-studies", data: "Case Studies" },
     { key: "the-doctors", data: "The Doctors" },
     { key: "the-advisors", data: "The Advisors" },
-    { key: "24/7-ally-assistance", data: "24/7 Ally Assistance" },
+    { key: "24/7-prach-assistance", data: "24/7 Prach Assistance" },
     { key: "about-prach", data: "About Prach" },
     { key: "settings", data: "settings" },
     { key: "need-help?", data: "Need Help?" },

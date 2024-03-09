@@ -48,6 +48,8 @@ export const handleSearch = async (ctx, navigate, prompt = "") => {
         mssgObject.id = uuidv4();
         mssgObject.question = questionPromptTemp;
         mssgObject.answer = outputString;
+        // const answerSubString = outputString.substring((0, 1000));
+        // const lastSpaceIndex = answerSubString.lastIndexOf(" ");
         mssgObject.viewed = 1000;
         mssgObject.rating = 0;
         mssgObject.feedback = "";

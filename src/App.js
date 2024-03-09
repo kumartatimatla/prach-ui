@@ -89,7 +89,7 @@ function App() {
             backdrop="blur"
             size="2xl"
             hideCloseButton
-            className="w-fit"
+            className="w-fit rounded-[30px]"
             isOpen={isOpen}
             onOpenChange={onOpenChange}
             classNames={{
@@ -101,7 +101,7 @@ function App() {
               {(onClose) => (
                 <>
                   <ModalBody className="p-0">
-                    <Login onClose={onClose} />
+                    <Login onClose={onClose} className={"rounded-[30px]"} />
                   </ModalBody>
                 </>
               )}

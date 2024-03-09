@@ -45,6 +45,7 @@ const Login = ({ className, onClose }) => {
         )
         .then((res) => {
           setSignerData(res.data);
+          onClose();
           navigateHome();
         })
         .catch((err) => console.log(err));

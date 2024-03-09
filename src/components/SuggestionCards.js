@@ -32,7 +32,11 @@ const SuggestionCards = ({
               </span>
             </span>
           </span>
-          <Image src={cardSearchArrow} alt="search card" />
+          <img
+            src={cardSearchArrow}
+            alt="search card"
+            className="w-[12px] h-[15px]"
+          />
         </CardBody>
       </Card>
     </button>

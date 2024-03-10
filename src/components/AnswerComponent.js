@@ -4,6 +4,7 @@ import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import likeOutlined from "../images/like-outline.svg";
 import disLikeOutlined from "../images/dislike-outline.svg";
+import Feedback from "./Feedback";
 
 const AnswerComponent = ({ answer, obj }) => {
   const lastWordStringIndex = answer.substring(0, obj.viewed);
@@ -33,7 +34,7 @@ const AnswerComponent = ({ answer, obj }) => {
   return (
     <div>
       <Markdown rehypePlugins={[rehypeRaw]}>{displayedText}</Markdown>
-      {showMore && (
+      {showMore ? (
         <>
           <div className="flex gap-3 mt-[15px] mb-[26px]">
             <img src={likeOutlined} alt="like" className="cursor-pointer" />
@@ -61,6 +62,8 @@ const AnswerComponent = ({ answer, obj }) => {
             </sapn>
           </Button>
         </>
+      ) : (
+        <Feedback chatObj={obj} />
       )}
     </div>
   );

@@ -7,13 +7,14 @@ import {
   Textarea,
   useDisclosure,
 } from "@nextui-org/react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { AppContext } from "../App";
+import { submitFeedback } from "./services";
 
-const Feedback = () => {
+const Feedback = ({ chatObj }) => {
   const context = useContext(AppContext);
-  const { chatResponse, setChatResponse } = context;
+  const { chatResponse, setChatResponse, signerData } = context;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [ratingOutlined, setRatingOutlined] = useState([
@@ -25,6 +26,7 @@ const Feedback = () => {
   ]);
   const [ratingFilled, setRatingFilled] = useState([]);
   const [userFeedback, setUserFeedback] = useState("");
+
   const handleRating = (stars) => {
     let arr = [];
     let arr2 = [];
@@ -35,47 +37,57 @@ const Feedback = () => {
     for (let i = 5; i > Number(stars); i--) {
       arr2.push(i + "");
     }
-    console.log("--", arr2);
     setRatingOutlined(arr2.reverse());
   };
 
-  const handleSubmit = (id) => {
-    console.log("id", id);
+  const handleSubmit = (obj) => {
     chatResponse.forEach((resp) => {
-      if (resp.id == id) {
+      if (resp.id === obj.id) {
         resp.rating = Number(ratingFilled[ratingFilled.length - 1]);
         resp.feedback = userFeedback;
       }
     });
     setChatResponse(chatResponse);
+    const data = {
+      id: obj.id,
+      userName: signerData?.name || "Anonymous",
+      userEmail: signerData?.email || "Anonymous",
+      question: obj.question,
+      rating: Number(ratingFilled[ratingFilled.length - 1]),
+      feedback: userFeedback,
+    };
+    submitFeedback(data);
   };
-  console.log("chatResponse", chatResponse);
+  const handleCancel = () => {
+    onClose();
+    setUserFeedback("");
+    handleRating(0);
+  };
   const handleUserFeedback = (e) => {
     setUserFeedback(e.target.value);
   };
   const [selectedObject, setSelectedObj] = useState({});
   const openFeedback = (item) => {
-    console.log("item", item);
     setSelectedObj(item);
   };
   return (
-    <div className="m-5">
-      {chatResponse.map((item, i) => {
-        return (
-          <div key={item.id}>
-            <h3 className="font-bold text-xl">{item.question}</h3>
-            <div>{item.answer}</div>
-            <Button
-              className="my-2 px-3 py-1 font-bold text-xs h-fit min-w-fit"
-              onPress={onOpen}
-              onClick={() => openFeedback(item)}
-            >
-              Feedback
-            </Button>
-          </div>
-        );
-      })}
-      <Modal size="sm" isOpen={isOpen} onClose={onClose}>
+    <div className="mt-[10px]">
+      <Button
+        className="redHatSemiBold min-h-fit h-fit px-[15px] py-[10px] bg-white shadow-md border border-[#DDDDDD]"
+        onPress={onOpen}
+        onClick={() => openFeedback(chatObj)}
+      >
+        Feedback
+      </Button>
+      <Modal
+        size="sm"
+        classNames={{
+          backdrop: ["z-[150]"],
+          wrapper: ["z-[150]"],
+        }}
+        isOpen={isOpen}
+        onClose={handleCancel}
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -122,15 +134,14 @@ const Feedback = () => {
                 <Button
                   color="danger"
                   variant="light"
-                  onPress={onClose}
-                  onClick={() => handleRating(selectedObject.rating)}
+                  onPress={handleCancel}
                   className="text-black font-semibold"
                 >
                   cancel
                 </Button>
                 <Button
                   onPress={onClose}
-                  onClick={() => handleSubmit(selectedObject.id)}
+                  onClick={() => handleSubmit(selectedObject)}
                   className="bg-gray-300 font-semibold"
                 >
                   Submit

@@ -28,6 +28,12 @@ const Login = ({ className, onClose }) => {
   const HandleWhatsappLink = () => {
     window.open("https:chat.whatsapp.com/LHn5MBkfqPqJ8WSVUgst3v", "_blank");
   };
+  const handleWp = () => {
+    window.open(
+      "https://whatsapp.com/channel/0029VaN2eFq0bIdh8tUlwX44",
+      "_blank"
+    );
+  };
   const navigateHome = () => {
     navigate("/");
   };
@@ -69,7 +75,7 @@ const Login = ({ className, onClose }) => {
     >
       <Card className="max-w-[550px] max-h-[615px] rounded-[30px]">
         <CardBody>
-          <div className="flex flex-col items-center justify-center gap-4 relative px-[60px]">
+          <div className="flex flex-col items-center justify-center gap:2 md:gap-4 relative px-[60px]">
             <div className="right-0 absolute top-0">
               <Button
                 onClick={handleClose}
@@ -81,16 +87,16 @@ const Login = ({ className, onClose }) => {
             <div className="flex flex-col items-center justify-center mt-6">
               <img src={logo} alt="Prach Logo" className="h-[99px] w-[98px]" />
             </div>
-            <span className="redHatMedium text-[20px] leading-[26px] text-[#606060] text-center mt-[26px] mb-[37px]">
+            <span className="redHatMedium text-[16px] md:text-[20px] text-[#606060] text-center mt-[15px] md:mt-[26px] mb-[15px] md:mb-[26px]">
               Bridging connections and empowering autistic journeys
             </span>
-            <span className="text-[24px] leading-[27px] redHatBold text-[#212121] mb-[10px]">
+            <span className="text-[20px] md:text-[24px] redHatBold text-[#212121] mb-[10px] mt-[10px]">
               Log in with
             </span>
             <div className="flex w-full justify-between gap-3">
               <Button
                 onClick={login}
-                className="bg-white shadow-md w-full max-h-[56px] max-w-[209px] h-[56px]"
+                className="bg-white shadow-md w-full max-h-[56px] h-[56px]"
               >
                 <img
                   src={googleIcon}
@@ -101,21 +107,23 @@ const Login = ({ className, onClose }) => {
                   Google
                 </span>
               </Button>
-              <Button className="bg-white shadow-md w-full max-h-[56px] max-w-[209px] h-[56px]">
+              {/* <Button
+                className="bg-white shadow-md w-full max-h-[56px] max-w-[209px] h-[56px]"
+              >
                 <img
-                  src={microsoftIcon}
+                  src={whatsappIcon}
                   alt="microsoft icon"
-                  className="w-[22px] h-[22px]"
+                  className="w-[30px] h-[30px]"
                 />
                 <span className="text-[20px] leading-[26px] redHatMedium text-[#212121]">
-                  Microsoft
+                  whatsapp
                 </span>
-              </Button>
+              </Button> */}
             </div>
           </div>
-          <Divider className="mt-[120px]" />
+          <Divider className="mt-[30px] md:mt-[70px]" />
           <div
-            className="flex items-center justify-center gap-2 my-[20px] cursor-pointer"
+            className="flex items-center justify-center gap-2 mt-[20px] mb-[12px] md:mb-[20px] cursor-pointer"
             onClick={HandleWhatsappLink}
           >
             <img
@@ -123,7 +131,7 @@ const Login = ({ className, onClose }) => {
               alt="prach logo"
               className="h-[32px] w-[32px]"
             />
-            <span className="text-[17px] leading-[22px] redHatBold text-[#212121]">
+            <span className="text-[14px] md:text-[17px] redHatBold text-[#212121]">
               Join the Prach WhatsApp community
             </span>
           </div>

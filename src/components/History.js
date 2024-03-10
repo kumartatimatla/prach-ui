@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../App";
-import { Button } from "@nextui-org/react";
+import { Accordion, AccordionItem, Button } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 
 const History = () => {
@@ -13,7 +13,7 @@ const History = () => {
     navigate("/results");
   };
   return (
-    <div className={`pt-[72px] pb-[82px] mx-8`}>
+    <div className={``}>
       <h3 className="font-bold text-xl mb-3">Chat History</h3>
       {chatHistory.map((item) => {
         return (

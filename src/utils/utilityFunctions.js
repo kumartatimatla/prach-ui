@@ -14,11 +14,11 @@ export const handleSearch = async (ctx, navigate, prompt = "") => {
     chatHistory,
     setChatHistory,
     setQuestionPrompt,
+    setIsOpenChatAccordion,
   } = ctx;
   if (chatResponse.length === 2 && Object.keys(signerData).length < 1) {
     setCheckLogin(true);
   } else {
-    console.log("first");
     try {
       setLoading(true);
       let questionPromptTemp = "";
@@ -45,9 +45,10 @@ export const handleSearch = async (ctx, navigate, prompt = "") => {
       if (result) {
         let outputString = result.replace(/\n/g, "<br/>");
         let mssgObject = {};
-        mssgObject.id = uuidv4();
+        // mssgObject.id = uuidv4();
         mssgObject.question = questionPromptTemp;
         mssgObject.answer = outputString;
+        mssgObject.id = response.data.result.id;
         // const answerSubString = outputString.substring((0, 1000));
         // const lastSpaceIndex = answerSubString.lastIndexOf(" ");
         mssgObject.viewed = 1000;
@@ -59,10 +60,10 @@ export const handleSearch = async (ctx, navigate, prompt = "") => {
         setEnteredPrompt("");
         setLoading(false);
         setCloseModal(true);
+        setIsOpenChatAccordion(true);
         // navigate("/results");
       }
     } catch (error) {
-      console.log(error.response);
       setLoading(false);
     }
   }

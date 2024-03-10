@@ -11,44 +11,49 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../App";
 import { isMobile } from "react-device-detect";
 
-const FaqAccordion = () => {
+const ChatHistoryAccordion = () => {
   const context = useContext(AppContext);
   const {
     activeFaq,
     setActiveFaq,
     loading,
-    isOpenFaqAccordion,
-    setIsOpenFaqAccordion,
+    isOpenChatAccordion,
+    setIsOpenChatAccordion,
     setIsOpenSidebar,
+    setChatResponse,
+    chatHistory,
   } = context;
 
   const navigate = useNavigate();
 
   const toggleAccordion = () => {
-    setIsOpenFaqAccordion(!isOpenFaqAccordion);
+    setIsOpenChatAccordion(!isOpenChatAccordion);
   };
 
   const handleClick = (e) => {
     let prompt = e.currentTarget.dataset.name;
     setActiveFaq(prompt);
+    handleSearch(context, navigate, prompt);
+  };
+  const handleLinkClick = (data) => {
+    setActiveFaq(data.question);
     if (isMobile) {
       setIsOpenSidebar(false);
     }
-    handleSearch(context, navigate, prompt);
+    setChatResponse([data]);
   };
-
   return (
-    <div className="">
+    <div className="mt-3">
       <div className="">
         <div
           className={`cursor-pointer bg-[transparent] w-full flex justify-between p-0 redHatBold text-[18px] leading-[23px] items-center ${
-            isOpenFaqAccordion ? "mb-[13px]" : ""
+            isOpenChatAccordion ? "mb-[13px]" : ""
           }`}
           onClick={toggleAccordion}
         >
-          <span>Discover the world of Autism</span>
+          <span>Chat History</span>
           <span className="">
-            {isOpenFaqAccordion ? (
+            {isOpenChatAccordion ? (
               <img src={upArrowBold} alt="up arrow" />
             ) : (
               <img src={downArrowBold} alt="down arrow" />
@@ -57,24 +62,24 @@ const FaqAccordion = () => {
         </div>
         <div
           className={`overflow-hidden transition-all duration-300 ${
-            isOpenFaqAccordion ? "max-h-[1000px]" : "max-h-0"
+            isOpenChatAccordion ? "max-h-[1000px]" : "max-h-0"
           } flex flex-col items-start`}
         >
           <div className="flex flex-col gap-2">
-            {suggestedCardsData.slice(0, 7).map((item, i) => {
+            {chatHistory.map((item, i) => {
               return (
                 <button
                   className={`flex items-center gap-[11px] ${
                     loading ? "cursor-default" : "cursor-pointer"
                   } text-left`}
                   key={i}
-                  onClick={handleClick}
-                  data-name={item.title}
+                  onClick={() => handleLinkClick(item)}
+                  data-name={item.question}
                   disabled={loading}
                 >
                   <img
                     src={
-                      activeFaq === item.title
+                      activeFaq === item.question
                         ? rightArrowBold
                         : rightArrowlight
                     }
@@ -82,12 +87,12 @@ const FaqAccordion = () => {
                   />
                   <span
                     className={`${
-                      activeFaq === item.title
+                      activeFaq === item.question
                         ? "text-black redHatBold"
                         : "text-[#5A5A5A] redHatRegular"
                     } text-[13px] leading-[15px]`}
                   >
-                    {item.title}
+                    {item.question}
                   </span>
                 </button>
               );
@@ -100,4 +105,4 @@ const FaqAccordion = () => {
   );
 };
 
-export default FaqAccordion;
+export default ChatHistoryAccordion;

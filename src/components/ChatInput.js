@@ -1,4 +1,4 @@
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Textarea } from "@nextui-org/react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../App";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import upArrow from "../images/backward-arrow.svg";
 import upArrowWhite from "../images/up-arrow-white.svg";
 import recordIcon from "../images/record-icon.svg";
 import attachmentIcon from "../images/attachment-icon.svg";
+import { isMobile, isDesktop } from "react-device-detect";
 
 const ChatInput = ({ className }) => {
   const context = useContext(AppContext);
@@ -31,55 +32,112 @@ const ChatInput = ({ className }) => {
   };
   return (
     <div className={cn("flex", className)}>
-      <Input
-        value={enteredPrompt}
-        onKeyDown={handleKeyPress}
-        onChange={(e) => setEnteredPrompt(e.target.value)}
-        className="w-full"
-        classNames={{
-          inputWrapper: ["bg-white", "shadow-lg", "pr-[10px]"],
-          input: [
-            "font-bold",
-            "placeholder:text-placeholder",
-            "placeholder:text-[18px]",
-            "placeholder:leading-[26px]",
-            "redHatMedium",
-            "text-[20px]",
-            "leading-[26px]",
-            "pl-[10px]",
-          ],
-        }}
-        placeholder={`${
-          chatResponse.length > 0
-            ? "Looking for more answers? Ask here…"
-            : "How can i help you today? Ask here…"
-        }`}
-        // startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
-        endContent={
-          <span className="flex gap-5">
-            <Button className="min-w-max bg-transparent p-0">
-              <img src={recordIcon} alt="search arrow" />
-            </Button>
-            <Button className="min-w-max bg-transparent p-0">
-              <img src={attachmentIcon} alt="search arrow" />
-            </Button>
-            <Button
-              disabled={isDisabled}
-              onClick={() => handleSearch(context, navigate)}
-              className={`min-w-max rounded-[11px] ${
-                isDisabled
-                  ? "bg-[#EBEBEB] cursor-default"
-                  : "bg-[#000000] cursor-pointer"
-              } `}
-            >
-              <img
-                src={isDisabled ? upArrow : upArrowWhite}
-                alt="search arrow"
-              />
-            </Button>
-          </span>
-        }
-      />
+      {isMobile && (
+        <Textarea
+          value={enteredPrompt}
+          onKeyDown={handleKeyPress}
+          onChange={(e) => setEnteredPrompt(e.target.value)}
+          className="w-full"
+          minRows={1}
+          classNames={{
+            inputWrapper: ["bg-white", "shadow-lg", "pr-[10px]"],
+            innerWrapper: ["flex", "flex-col", "items-end"],
+            input: [
+              "font-bold",
+              "placeholder:text-placeholder",
+              "placeholder:text-[16px]",
+              "placeholder:md:text-[18px]",
+              "placeholder:leading-[26px]",
+              "redHatMedium",
+              "text-[16px]",
+              "md:text-[20px]",
+              "leading-[26px]",
+              "pl-[10px]",
+            ],
+          }}
+          placeholder={`${
+            chatResponse.length > 0
+              ? "Looking for more answers? Ask here…"
+              : "How can i help you today? Ask here…"
+          }`}
+          // startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
+          endContent={
+            <span className="flex gap-5 w-full border border-t-[#71717160] border-r-0 border-l-0 border-b-0 justify-end pt-[10px]">
+              <Button className="min-w-max bg-transparent p-0">
+                <img src={recordIcon} alt="search arrow" />
+              </Button>
+              <Button className="min-w-max bg-transparent p-0">
+                <img src={attachmentIcon} alt="search arrow" />
+              </Button>
+              <Button
+                disabled={isDisabled}
+                onClick={() => handleSearch(context, navigate)}
+                className={`min-w-max rounded-[11px] ${
+                  isDisabled
+                    ? "bg-[#EBEBEB] cursor-default"
+                    : "bg-[#000000] cursor-pointer"
+                } `}
+              >
+                <img
+                  src={isDisabled ? upArrow : upArrowWhite}
+                  alt="search arrow"
+                />
+              </Button>
+            </span>
+          }
+        />
+      )}
+      {isDesktop && (
+        <Input
+          value={enteredPrompt}
+          onKeyDown={handleKeyPress}
+          onChange={(e) => setEnteredPrompt(e.target.value)}
+          className="w-full"
+          classNames={{
+            inputWrapper: ["bg-white", "shadow-lg", "pr-[10px]"],
+            input: [
+              "font-bold",
+              "placeholder:text-placeholder",
+              "placeholder:text-[18px]",
+              "placeholder:leading-[26px]",
+              "redHatMedium",
+              "text-[20px]",
+              "leading-[26px]",
+              "pl-[10px]",
+            ],
+          }}
+          placeholder={`${
+            chatResponse.length > 0
+              ? "Looking for more answers? Ask here…"
+              : "How can i help you today? Ask here…"
+          }`}
+          // startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
+          endContent={
+            <span className="flex gap-5">
+              <Button className="min-w-max bg-transparent p-0">
+                <img src={recordIcon} alt="search arrow" />
+              </Button>
+              <Button className="min-w-max bg-transparent p-0">
+                <img src={attachmentIcon} alt="search arrow" />
+              </Button>
+              <Button
+                disabled={isDisabled}
+                onClick={() => handleSearch(context, navigate)}
+                className={`min-w-max rounded-[11px] ${
+                  isDisabled
+                    ? "bg-[#EBEBEB] cursor-default"
+                    : "bg-[#000000] cursor-pointer"
+                } `}
+              >
+                <img
+                  src={isDisabled ? upArrow : upArrowWhite}
+                  alt="search arrow"
+                />
+              </Button>
+            </span>
+          }
+        />
+      )}
     </div>
   );
 };

@@ -12,6 +12,8 @@ import {
   ModalContent,
   useDisclosure,
 } from "@nextui-org/react";
+import Feedback from "./components/Feedback";
+import Sample from "./components/Sample";
 
 export const AppContext = createContext();
 function App() {
@@ -29,6 +31,7 @@ function App() {
   const [activeFaq, setActiveFaq] = useState("");
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
   const [isOpenFaqAccordion, setIsOpenFaqAccordion] = useState(false);
+  const [isOpenChatAccordion, setIsOpenChatAccordion] = useState(true);
   const [questionPrompt, setQuestionPrompt] = useState("");
 
   useEffect(() => {
@@ -53,7 +56,6 @@ function App() {
     }
   }, [chatResponse, checkLogin]);
 
-  console.log("curr", currentPage);
   return (
     <AppContext.Provider
       value={{
@@ -79,6 +81,8 @@ function App() {
         setIsOpenSidebar,
         isOpenFaqAccordion,
         setIsOpenFaqAccordion,
+        isOpenChatAccordion,
+        setIsOpenChatAccordion,
         questionPrompt,
         setQuestionPrompt,
       }}
@@ -86,10 +90,11 @@ function App() {
       <div className="flex flex-col min-h-screen relative bg-[#f3f3f385]">
         <Router>
           <Modal
+            placement="center"
             backdrop="blur"
             size="2xl"
             hideCloseButton
-            className="w-fit rounded-[30px]"
+            className="w-[90%] sm:w-fit rounded-[30px]"
             isOpen={isOpen}
             onOpenChange={onOpenChange}
             classNames={{
@@ -111,6 +116,7 @@ function App() {
             className={`bg-[#F8F8F8] py-4 px-5 sm:px-10 lg:px-20 fixed w-full top-0 z-50`}
           />
           <Routes>
+            <Route path="/sample" exact element={<Sample />} />
             <Route
               path="/"
               exact

@@ -5,22 +5,14 @@ import newKnowledge from "../images/new-knowledge.svg";
 import { cn } from "../utils/cn";
 import { AppContext } from "../App";
 import { useNavigate } from "react-router-dom";
-import { googleLogout } from "@react-oauth/google";
 import leftArrowBold from "../images/left-arrow-bold.svg";
 
 const Header = ({ className }) => {
   const context = useContext(AppContext);
-  const { currentPage, signerData, setChatHistory, setSignerData } = context;
+  const { currentPage, signerData } = context;
   const navigate = useNavigate();
 
   const [scrolled, setScrolled] = useState(false);
-
-  const logOut = () => {
-    googleLogout();
-    setChatHistory([]);
-    setSignerData([]);
-    navigate(`/`);
-  };
 
   const handleScroll = () => {
     const isScrolled = window.scrollY > 15;

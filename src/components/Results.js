@@ -14,6 +14,8 @@ import ChatInput from "./ChatInput";
 import Login from "./Login";
 import Sidebar from "./Sidebar";
 import loadingLogo from "../images/logo-without-name.svg";
+import { isMobile } from "react-device-detect";
+import Feedback from "./Feedback";
 
 const Results = () => {
   const context = useContext(AppContext);
@@ -26,12 +28,19 @@ const Results = () => {
     signerData,
     isOpenSidebar,
     questionPrompt,
+    setIsOpenSidebar,
   } = context;
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
   useEffect(() => {
     setCurrentPage("results");
   }, [setCurrentPage]);
+
+  useEffect(() => {
+    if (isMobile) {
+      setIsOpenSidebar(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (chatResponse.length > 0 && !loading) {
@@ -83,22 +92,22 @@ const Results = () => {
     >
       <div
         className={`my-20 ${
-          isOpenSidebar
+          isOpenSidebar && !isMobile
             ? "ml-[467px] pr-[250px] transition-margin duration-300"
-            : "ml-0 transition-margin duration-400  w-[70%]"
+            : "ml-0 transition-margin duration-400  w-[85%]"
         } relative `}
       >
         <Sidebar />
 
-        <div className="redHatMedium text-[16px] leading-[21px] text-[#6F6F6F]">
+        {/* <div className="redHatMedium text-[16px] leading-[21px] text-[#6F6F6F]">
           Discover the world of Autism
-        </div>
+        </div> */}
         {chatResponse.map((item, i) => {
           return (
             <div key={i}>
               <div
                 id={item.id}
-                className="redHatBold text-[32px] leading-[189x]"
+                className="redHatBold text-[22px] md:text-[32px]"
               >
                 {item.question}
               </div>
@@ -108,13 +117,13 @@ const Results = () => {
                 </span>
                 <div className="w-48 flex justify-between">
                   <span className="redHatMedium text-[16px] leading-[21px] text-[#6F6F6F]">
-                    Answers:
+                    Answer:
                   </span>
                 </div>
               </div>
               <div
                 data-container="answer"
-                className="redHatMedium text-black text-[18px] leading-[26px]"
+                className={`redHatMedium text-black text-[14px] md:text-[18px] leading-[18px] md:leading-[26px]`}
               >
                 <AnswerComponent answer={item.answer} obj={item} />
               </div>
@@ -124,13 +133,12 @@ const Results = () => {
         })}
         {loading && (
           <div id="loader" className="flex flex-col gap-2 h-[80vh]">
-            <span className="redHatBold text-[32px] leading-[189x]">
+            <span className="redHatBold text-[22px] md:text-[32px]">
               {questionPrompt}
-              Why is my ASD child doing stimming?
             </span>
             <div className="flex items-center redHatMedium text-[#6F6F6F] text-[16px] leading-[21px] gap-3">
               <img src={loadingLogo} alt="loader prach logo" />
-              <span>Prach is getting answers</span>
+              <span>Prach is getting answer</span>
               <div className="loader">
                 <div className={`circle circle1`}></div>
                 <div className={`circle circle2`}></div>
@@ -141,9 +149,9 @@ const Results = () => {
           </div>
         )}
         <ChatInput
-          className={`fixed z-[100] bottom-[10%] w-[60%] ${
-            isOpenSidebar ? "left-[467px]" : ""
-          }`}
+          className={`fixed z-[100] bottom-[10%] ${
+            isMobile ? "w-[94%]" : "w-[60%]"
+          } ${isOpenSidebar && !isMobile ? "left-[467px]" : "left-[3%]"}`}
         />
       </div>
     </div>

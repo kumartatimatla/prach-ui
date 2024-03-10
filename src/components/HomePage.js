@@ -9,6 +9,9 @@ import ChatInput from "./ChatInput";
 import { AppContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { handleSearch } from "../utils/utilityFunctions";
+import { accoladesData } from "../utils/accoladesData";
+import Accolades from "./Accolades";
+import loginImg from "../images/login.svg";
 
 const HomePage = ({ className }) => {
   const context = useContext(AppContext);
@@ -21,7 +24,6 @@ const HomePage = ({ className }) => {
   }, [setCurrentPage]);
 
   const handleCardClick = (e) => {
-    console.log("----", e.currentTarget.name);
     let prompt = e.currentTarget.name;
     setActiveFaq(prompt);
     setIsOpenFaqAccordion(true);
@@ -34,13 +36,13 @@ const HomePage = ({ className }) => {
         <div className="flex flex-col items-center justify-center">
           <Image src={logo} alt="Prach Logo" className="rounded-none" />
         </div>
-        <h2 className="text-2xl font-bold text-center redHatBold text-[32px] leading-[43px] w-[60%]">
-          Welcome to Prach Knowledge Assistant on Autism!
+        <h2 className="text-2xl font-bold text-center redHatBold text-[22px] md:text-[32px] leading-[32px] md:leading-[43px] w-[60%]">
+          Autism Knowledge Assistant!
         </h2>
-        <ChatInput className="w-[70%]" />
+        <ChatInput className="w-full md:w-[70%]" />
       </div>
       <div className="flex flex-col items-center gap-4">
-        <div className="text-[24px] leading-[31px] text-[#8B8B8B] redHatBold mt-6">
+        <div className="text-[18px] md:text-[24px] leading-[31px] text-[#8B8B8B] redHatBold mt-6">
           Discover the world of Autism
         </div>
         <div className="gap-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
@@ -59,6 +61,7 @@ const HomePage = ({ className }) => {
               );
             })}
         </div>
+
         <div
           className="flex gap-2 cursor-pointer mt-5 font-bold text-[14px] leading-[18px]"
           onClick={() => setShowMoreCards((prev) => !prev)}
@@ -75,6 +78,18 @@ const HomePage = ({ className }) => {
             </>
           )}
         </div>
+        {/* <div className="gap-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+          {accoladesData.map((item, i) => {
+            return (
+              <Accolades
+                key={i + item.userName}
+                title={item.userName}
+                subTitle={item.review}
+                iconSrc={loginImg}
+              />
+            );
+          })}
+        </div> */}
       </div>
     </main>
   );

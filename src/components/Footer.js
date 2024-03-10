@@ -12,12 +12,12 @@ const Footer = ({ className }) => {
   const { screenWidth } = useScreenSize();
   const footerItems = [
     { key: "prach-community", data: "Prach Community" },
-    { key: "case-studies", data: "Case Studies" },
-    { key: "the-doctors", data: "The Doctors" },
-    { key: "the-advisors", data: "The Advisors" },
-    { key: "24/7-prach-assistance", data: "24/7 Prach Assistance" },
-    { key: "about-prach", data: "About Prach" },
-    { key: "settings", data: "settings" },
+    // { key: "case-studies", data: "Case Studies" },
+    // { key: "the-doctors", data: "The Doctors" },
+    // { key: "the-advisors", data: "The Advisors" },
+    // { key: "24/7-prach-assistance", data: "24/7 Prach Assistance" },
+    // { key: "about-prach", data: "About Prach" },
+    // { key: "settings", data: "settings" },
     { key: "need-help?", data: "Need Help?" },
     { key: "usage-analytics", data: "usage analytics" },
   ];
@@ -49,7 +49,7 @@ const Footer = ({ className }) => {
       <div className="flex gap-5">
         {footerItems.slice(0, footerItemsLimit).map((item) => {
           return (
-            <span key={item.key} className="cursor-pointer">
+            <span key={item.key} className="cursor-default">
               {item.data}
             </span>
           );

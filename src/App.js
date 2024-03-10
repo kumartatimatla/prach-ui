@@ -116,7 +116,6 @@ function App() {
             className={`bg-[#F8F8F8] py-4 px-5 sm:px-10 lg:px-20 fixed w-full top-0 z-50`}
           />
           <Routes>
-            <Route path="/sample" exact element={<Sample />} />
             <Route
               path="/"
               exact

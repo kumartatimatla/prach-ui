@@ -36,16 +36,16 @@ const AnswerComponent = ({ answer, obj }) => {
       <Markdown rehypePlugins={[rehypeRaw]}>{displayedText}</Markdown>
       {showMore ? (
         <>
-          <div className="flex gap-3 mt-[15px] mb-[26px]">
+          {/* <div className="flex gap-3 mt-[15px] mb-[16px]">
             <img src={likeOutlined} alt="like" className="cursor-pointer" />
             <img
               src={disLikeOutlined}
               alt="dislike"
               className="cursor-pointer"
             />
-          </div>
+          </div> */}
           <Button
-            className="redHatSemiBold min-h-fit h-fit px-[15px] py-[10px] bg-white shadow-md border border-[#DDDDDD]"
+            className="redHatSemiBold min-h-fit h-fit px-[15px] py-[10px] bg-white shadow-md border border-[#DDDDDD] mt-[10px]"
             onClick={handleShowMore}
           >
             Show More

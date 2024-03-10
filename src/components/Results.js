@@ -1,15 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
 import AnswerComponent from "./AnswerComponent";
-import {
-  Button,
-  Divider,
-  Modal,
-  ModalBody,
-  ModalContent,
-  Skeleton,
-  useDisclosure,
-} from "@nextui-org/react";
+import { Button, Divider, useDisclosure } from "@nextui-org/react";
 import ChatInput from "./ChatInput";
 import Login from "./Login";
 import Sidebar from "./Sidebar";

@@ -81,6 +81,7 @@ const Feedback = ({ chatObj }) => {
       </Button>
       <Modal
         size="sm"
+        placement="center"
         classNames={{
           backdrop: ["z-[150]"],
           wrapper: ["z-[150]"],

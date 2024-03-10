@@ -80,7 +80,7 @@ const Sidebar = () => {
           {Object.keys(signerData).length > 0 && signerData?.verified_email ? (
             <Dropdown
               showArrow
-              placement="right-start"
+              placement={`${isMobile}?"top-end":right-start`}
               className=""
               classNames={{
                 base: "before:bg-default-200 ",

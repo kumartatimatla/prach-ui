@@ -38,9 +38,9 @@ const ChatInput = ({ className }) => {
           onKeyDown={handleKeyPress}
           onChange={(e) => setEnteredPrompt(e.target.value)}
           className="w-full"
-          minRows={1}
+          minRows={2}
           classNames={{
-            inputWrapper: ["bg-white", "shadow-lg", "pr-[10px]"],
+            inputWrapper: ["bg-white", "shadow-lg", "p-[5px]"],
             innerWrapper: ["flex", "flex-col", "items-end"],
             input: [
               "font-bold",
@@ -62,12 +62,24 @@ const ChatInput = ({ className }) => {
           }`}
           // startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
           endContent={
-            <span className="flex gap-5 w-full border border-t-[#71717160] border-r-0 border-l-0 border-b-0 justify-end pt-[10px]">
-              <Button className="min-w-max bg-transparent p-0">
-                <img src={recordIcon} alt="search arrow" />
+            <span className="flex gap-1 md:gap-5 w-full border border-t-[#71717160] border-r-0 border-l-0 border-b-0 justify-end pt-[5px]">
+              <Button
+                className={`min-w-max bg-transparent p-0 ${
+                  isMobile ? "p-0 w-[30px] h-[30px]" : ""
+                }`}
+              >
+                <img
+                  src={recordIcon}
+                  alt="search arrow"
+                  className={`${isMobile ? "w-[25px] h-[25px]" : ""}`}
+                />
               </Button>
-              <Button className="min-w-max bg-transparent p-0">
-                <img src={attachmentIcon} alt="search arrow" />
+              <Button
+                className={`min-w-max bg-transparent p-0 ${
+                  isMobile ? "p-0 w-[30px] h-[30px]" : ""
+                }`}
+              >
+                <img src={attachmentIcon} alt="search arrow" className="" />
               </Button>
               <Button
                 disabled={isDisabled}
@@ -76,11 +88,12 @@ const ChatInput = ({ className }) => {
                   isDisabled
                     ? "bg-[#EBEBEB] cursor-default"
                     : "bg-[#000000] cursor-pointer"
-                } `}
+                } ${isMobile ? "p-0 w-[30px] h-[30px]" : ""}`}
               >
                 <img
                   src={isDisabled ? upArrow : upArrowWhite}
                   alt="search arrow"
+                  className={`${isMobile ? "w-[15px] h-[15px]" : ""}`}
                 />
               </Button>
             </span>

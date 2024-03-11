@@ -39,7 +39,7 @@ const Header = ({ className }) => {
       {currentPage === "login" ? (
         <Button
           onClick={() => navigate("/")}
-          className="bg-transparent p-0 text-[16px] leading-[21px] redHatMedium"
+          className="bg-transparent p-0 text-[14px] md:text-[16px] leading-[21px] redHatMedium"
           startContent={
             <img src={leftArrowBold} alt="dicover world of autism" />
           }
@@ -51,7 +51,7 @@ const Header = ({ className }) => {
           {currentPage !== "results" && (
             <Button
               onClick={() => navigate("/")}
-              className="bg-transparent p-0 redHatMedium text-[16px] text-[#000000] leading-[21px]"
+              className="bg-transparent p-0 redHatMedium text-[14px] md:text-[16px] text-[#000000] leading-[21px]"
               startContent={
                 <Image
                   src={newKnowledge}
@@ -68,7 +68,7 @@ const Header = ({ className }) => {
           ) && (
             <Button
               onClick={() => navigate("/login/?page=login")}
-              className="bg-transparent p-0  redHatMedium text-[16px] text-[#000000] leading-[21px]"
+              className="bg-transparent p-0  redHatMedium text-[14px] md:text-[16px] text-[#000000] leading-[21px]"
               startContent={
                 <Image
                   src={loginImg}

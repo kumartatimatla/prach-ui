@@ -12,8 +12,6 @@ import {
   ModalContent,
   useDisclosure,
 } from "@nextui-org/react";
-import Feedback from "./components/Feedback";
-import Sample from "./components/Sample";
 
 export const AppContext = createContext();
 function App() {

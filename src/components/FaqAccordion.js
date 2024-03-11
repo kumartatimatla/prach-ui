@@ -41,7 +41,7 @@ const FaqAccordion = () => {
     <div className="">
       <div className="">
         <div
-          className={`cursor-pointer bg-[transparent] w-full flex justify-between p-0 redHatBold text-[18px] leading-[23px] items-center ${
+          className={`cursor-pointer bg-[transparent] w-full flex justify-between p-0 redHatBold text-[16px] md:text-[18px] leading-[23px] items-center ${
             isOpenFaqAccordion ? "mb-[13px]" : ""
           }`}
           onClick={toggleAccordion}
@@ -83,7 +83,7 @@ const FaqAccordion = () => {
                   <span
                     className={`${
                       activeFaq === item.title
-                        ? "text-black redHatBold"
+                        ? "text-black redHatSemiBold"
                         : "text-[#5A5A5A] redHatRegular"
                     } text-[13px] leading-[15px]`}
                   >

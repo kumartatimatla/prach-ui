@@ -70,6 +70,7 @@ const Feedback = ({ chatObj }) => {
   const openFeedback = (item) => {
     setSelectedObj(item);
   };
+
   return (
     <div className="mt-[10px]">
       <Button
@@ -94,7 +95,7 @@ const Feedback = ({ chatObj }) => {
             <>
               {/* <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader> */}
               <ModalBody>
-                <h2 className="text-xl font-bold">Rating:</h2>
+                <h2 className="text-[18px] redHatBold font-bold">Rating:</h2>
                 <div className="flex gap-1 cursor-pointer shadow-md py-2 px-4 w-fit">
                   {ratingFilled.map((selectedRating, i) => {
                     return (
@@ -102,7 +103,7 @@ const Feedback = ({ chatObj }) => {
                         id={`star-${selectedRating}`}
                         onClick={() => handleRating(selectedRating)}
                       >
-                        <FaStar />
+                        <FaStar size="30px" color="#9C9C9C" />
                       </span>
                     );
                   })}
@@ -112,12 +113,12 @@ const Feedback = ({ chatObj }) => {
                         id={`star-${undelectedRating}`}
                         onClick={() => handleRating(undelectedRating)}
                       >
-                        <FaRegStar />
+                        <FaRegStar size="30px" color="#9C9C9C" />
                       </span>
                     );
                   })}
                 </div>
-                <h2 className="text-xl font-bold">Feedback:</h2>
+                <h2 className="text-[18px] redHatBold ">Feedback:</h2>
                 <Textarea
                   // variant="bordered"
                   // labelPlacement="outside"
@@ -141,8 +142,12 @@ const Feedback = ({ chatObj }) => {
                   cancel
                 </Button>
                 <Button
+                  isDisabled={
+                    !userFeedback ||
+                    Number(ratingFilled[ratingFilled.length - 1]) === 0
+                  }
                   onPress={onClose}
-                  onClick={() => handleSubmit(selectedObject)}
+                  onClick={() => handleSubmit(chatObj)}
                   className="bg-gray-300 font-semibold"
                 >
                   Submit

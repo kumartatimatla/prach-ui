@@ -32,11 +32,15 @@ const HomePage = ({ className }) => {
 
   return (
     <main className={cn("flex flex-col justify-between", className)}>
-      <div className="flex flex-col items-center gap-9 mt-11 ">
+      <div className="flex flex-col items-center gap-5 md:gap-9 mt-8 md:mt-11 ">
         <div className="flex flex-col items-center justify-center">
-          <Image src={logo} alt="Prach Logo" className="rounded-none" />
+          <img
+            src={logo}
+            alt="Prach Logo"
+            className="rounded-none w-[60px] h-[60px] md:w-[98px] md:h-[98px]"
+          />
         </div>
-        <h2 className="text-2xl font-bold text-center redHatBold text-[22px] md:text-[32px] leading-[32px] md:leading-[43px] w-[60%]">
+        <h2 className="text-2xl font-bold text-center redHatBold text-[16px] md:text-[32px] leading-[20px] md:leading-[43px] w-[60%]">
           Autism Knowledge Assistant!
         </h2>
         <ChatInput className="w-full md:w-[70%]" />

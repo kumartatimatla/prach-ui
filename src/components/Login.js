@@ -14,7 +14,7 @@ import microsoftIcon from "../images/microsoft-icon.png";
 const Login = ({ className, onClose }) => {
   const context = useContext(AppContext);
   const navigate = useNavigate();
-  const { setCurrentPage, setSignerData, currentPage } = context;
+  const { setCurrentPage, setSignerData, currentPage, signerData } = context;
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
   const page = queryParams.get("page");
@@ -24,6 +24,12 @@ const Login = ({ className, onClose }) => {
       setCurrentPage("login");
     }
   }, []);
+
+  useEffect(() => {
+    if (Object.keys(signerData).length > 0) {
+      navigate("/");
+    }
+  }, [signerData]);
 
   const HandleWhatsappLink = () => {
     window.open("https:chat.whatsapp.com/LHn5MBkfqPqJ8WSVUgst3v", "_blank");
@@ -85,7 +91,11 @@ const Login = ({ className, onClose }) => {
               </Button>
             </div>
             <div className="flex flex-col items-center justify-center mt-6">
-              <img src={logo} alt="Prach Logo" className="h-[99px] w-[98px]" />
+              <img
+                src={logo}
+                alt="Prach Logo"
+                className="w-[60px] h-[60px] md:h-[99px] md:w-[98px]"
+              />
             </div>
             <span className="redHatMedium text-[16px] md:text-[20px] text-[#606060] text-center mt-[15px] md:mt-[26px] mb-[15px] md:mb-[26px]">
               Bridging connections and empowering autistic journeys

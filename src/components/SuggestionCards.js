@@ -24,7 +24,7 @@ const SuggestionCards = ({
               <Image src={iconSrc} alt="search card" className="rounded-none" />
             </span>
             <span className="flex flex-col">
-              <span className="redHatBold text-[16px] leading-[21px]">
+              <span className="redHatBold text-[14px] md:text-[16px] leading-[21px]">
                 {title}
               </span>
               <span className="redHatMedim font-semibold text-[12px] leading-[16px] text-[#505050]">

@@ -99,23 +99,27 @@ const Results = () => {
             <div key={i}>
               <div
                 id={item.id}
-                className="redHatBold text-[22px] md:text-[32px]"
+                className="redHatBold text-[16px] md:text-[32px]"
               >
                 {item.question}
               </div>
               <div className="flex items-center mb-3">
                 <span className="mr-2">
-                  <img src={loadingLogo} alt="loader prach logo" />
+                  <img
+                    src={loadingLogo}
+                    alt="loader prach logo"
+                    className="w-[18px] md:w-[29px] h-[16px] md:h-[23px]"
+                  />
                 </span>
                 <div className="w-48 flex justify-between">
-                  <span className="redHatMedium text-[16px] leading-[21px] text-[#6F6F6F]">
+                  <span className="redHatMedium text-[14px] md:text-[16px] leading-[21px] text-[#6F6F6F]">
                     Answer:
                   </span>
                 </div>
               </div>
               <div
                 data-container="answer"
-                className={`redHatMedium text-black text-[14px] md:text-[18px] leading-[18px] md:leading-[26px]`}
+                className={`redHatRegular text-black text-[14px] md:text-[18px] leading-[18px] md:leading-[26px]`}
               >
                 <AnswerComponent answer={item.answer} obj={item} />
               </div>

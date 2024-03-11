@@ -75,8 +75,8 @@ const Sidebar = () => {
         />
       </button>
       <div className="">
-        <span className="flex items-center gap-7">
-          <img src={logo} alt="Prach Logo" width="58px" height="59px" />
+        <span className="flex items-center gap-2 md:gap-1">
+          <img src={logo} alt="Prach Logo" className="w-[58px] h-[59px]" />
           {Object.keys(signerData).length > 0 && signerData?.verified_email ? (
             <Dropdown
               showArrow

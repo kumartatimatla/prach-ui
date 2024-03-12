@@ -32,7 +32,7 @@ const Login = ({ className, onClose }) => {
   }, [signerData]);
 
   const HandleWhatsappLink = () => {
-    window.open("https:chat.whatsapp.com/LHn5MBkfqPqJ8WSVUgst3v", "_blank");
+    window.open("https://chat.whatsapp.com/LHn5MBkfqPqJ8WSVUgst3v", "_blank");
   };
   const handleWp = () => {
     window.open(

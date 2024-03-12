@@ -97,7 +97,7 @@ function App() {
             onOpenChange={onOpenChange}
             classNames={{
               backdrop: ["z-[150]"],
-              wrapper: ["z-[150]"],
+              wrapper: ["z-[150]", "modalStyle"],
             }}
           >
             <ModalContent>

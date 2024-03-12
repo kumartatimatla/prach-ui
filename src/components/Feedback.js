@@ -40,7 +40,7 @@ const Feedback = ({ chatObj }) => {
     setRatingOutlined(arr2.reverse());
   };
 
-  const handleSubmit = (obj) => {
+  const handleSubmit = async (obj) => {
     chatResponse.forEach((resp) => {
       if (resp.id === obj.id) {
         resp.rating = Number(ratingFilled[ratingFilled.length - 1]);
@@ -56,7 +56,8 @@ const Feedback = ({ chatObj }) => {
       rating: Number(ratingFilled[ratingFilled.length - 1]),
       feedback: userFeedback,
     };
-    submitFeedback(data);
+    await submitFeedback(data);
+    // onClose();
   };
   const handleCancel = () => {
     onClose();
@@ -74,7 +75,7 @@ const Feedback = ({ chatObj }) => {
   return (
     <div className="mt-[10px]">
       <Button
-        className="redHatSemiBold min-h-fit h-fit px-[15px] py-[10px] bg-white shadow-md border border-[#DDDDDD]"
+        className="redHatSemiBold min-h-fit h-fit px-[15px] py-[10px] bg-black text-white shadow-md border border-[#DDDDDD]"
         onPress={onOpen}
         onClick={() => openFeedback(chatObj)}
       >
@@ -85,8 +86,9 @@ const Feedback = ({ chatObj }) => {
         placement="center"
         classNames={{
           backdrop: ["z-[150]"],
-          wrapper: ["z-[150]"],
+          wrapper: ["z-[150]", "modalStyle"],
         }}
+        className=""
         isOpen={isOpen}
         onClose={handleCancel}
       >
@@ -103,7 +105,7 @@ const Feedback = ({ chatObj }) => {
                         id={`star-${selectedRating}`}
                         onClick={() => handleRating(selectedRating)}
                       >
-                        <FaStar size="30px" color="#9C9C9C" />
+                        <FaStar size="30px" color="#000000" />
                       </span>
                     );
                   })}
@@ -113,7 +115,7 @@ const Feedback = ({ chatObj }) => {
                         id={`star-${undelectedRating}`}
                         onClick={() => handleRating(undelectedRating)}
                       >
-                        <FaRegStar size="30px" color="#9C9C9C" />
+                        <FaRegStar size="30px" color="#000000" />
                       </span>
                     );
                   })}

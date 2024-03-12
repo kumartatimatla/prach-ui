@@ -34,9 +34,9 @@ const AnswerComponent = ({ answer, obj }) => {
   return (
     <div>
       <Markdown rehypePlugins={[rehypeRaw]}>{displayedText}</Markdown>
-      {showMore ? (
+      {showMore && (
         <>
-          {/* <div className="flex gap-3 mt-[15px] mb-[16px]">
+          {/* <div className="flex gap-3 mt-[15px] mb-[6px]">
             <img src={likeOutlined} alt="like" className="cursor-pointer" />
             <img
               src={disLikeOutlined}
@@ -62,9 +62,8 @@ const AnswerComponent = ({ answer, obj }) => {
             </sapn>
           </Button>
         </>
-      ) : (
-        <Feedback chatObj={obj} />
       )}
+      <Feedback chatObj={obj} />
     </div>
   );
 };

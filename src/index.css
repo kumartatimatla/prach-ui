@@ -234,3 +234,6 @@ body {
     transform: translateY(-5px);
   }
 }
+.modalStyle {
+  transform: translateY(0) !important;
+}

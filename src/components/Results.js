@@ -6,7 +6,7 @@ import ChatInput from "./ChatInput";
 import Login from "./Login";
 import Sidebar from "./Sidebar";
 import loadingLogo from "../images/logo-without-name.svg";
-import { isMobile } from "react-device-detect";
+import { isMobile, isTablet, isIPad13, isAndroid } from "react-device-detect";
 import Feedback from "./Feedback";
 
 const Results = () => {
@@ -146,8 +146,14 @@ const Results = () => {
         )}
         <ChatInput
           className={`fixed z-[100] bottom-[10%] ${
-            isMobile ? "w-[94%]" : "w-[60%]"
-          } ${isOpenSidebar && !isMobile ? "left-[467px]" : "left-[3%]"}`}
+            isMobile || isTablet || isIPad13 || isAndroid
+              ? "w-[94%]"
+              : "w-[60%]"
+          } ${
+            isOpenSidebar && (!isMobile || !isTablet || !isIPad13 || !isAndroid)
+              ? "left-[467px]"
+              : "left-[3%]"
+          }`}
         />
       </div>
     </div>

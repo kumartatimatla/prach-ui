@@ -1,4 +1,12 @@
-import { Button, Image } from "@nextui-org/react";
+import {
+  Button,
+  Image,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Divider,
+} from "@nextui-org/react";
 import React, { useContext, useEffect, useState } from "react";
 import loginImg from "../images/login.svg";
 import newKnowledge from "../images/new-knowledge.svg";
@@ -6,10 +14,18 @@ import { cn } from "../utils/cn";
 import { AppContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import leftArrowBold from "../images/left-arrow-bold.svg";
+import myAccount from "../images/my-account.svg";
+import wpCommunity from "../images/wp-community.svg";
+import termsOfUse from "../images/terms-of-use.svg";
+import privacyPolicy from "../images/privacy-policy.svg";
+import logout from "../images/logout.svg";
+import { isMobile } from "react-device-detect";
+import rightArrowBold from "../images/right-arrow-bold.svg";
+import { googleLogout } from "@react-oauth/google";
 
 const Header = ({ className }) => {
   const context = useContext(AppContext);
-  const { currentPage, signerData } = context;
+  const { currentPage, signerData, setChatHistory, setSignerData } = context;
   const navigate = useNavigate();
 
   const [scrolled, setScrolled] = useState(false);
@@ -25,6 +41,13 @@ const Header = ({ className }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const logOut = () => {
+    googleLogout();
+    setChatHistory([]);
+    setSignerData([]);
+    navigate(`/`);
+  };
 
   return (
     <nav
@@ -63,9 +86,73 @@ const Header = ({ className }) => {
               New Knowledge
             </Button>
           )}
-          {!(
-            Object.keys(signerData).length > 0 && signerData?.verified_email
-          ) && (
+          {Object.keys(signerData).length > 0 && signerData?.verified_email ? (
+            <Dropdown
+              showArrow
+              placement={`${isMobile}?"top-end":right-start`}
+              className=""
+              classNames={{
+                base: "before:bg-default-200 ",
+                content: "shadow-md",
+              }}
+            >
+              <DropdownTrigger>
+                <span className="flex flex-col gap-1 px-4 py-1 hover:shadow-lg hover:rounded-[12px]">
+                  <span className="flex gap-1 cursor-pointer">
+                    <span className="w-[20px] h-[20px] bg-[#4A4A4A] rounded-full flex justify-center items-center">
+                      <img
+                        src={signerData?.picture}
+                        alt="login user"
+                        className={`w-[20px] h-[20px] rounded-full p-0`}
+                      />
+                    </span>
+                    <span className="redHatSemiBold text-[#000000] text-[16px] leading-[19px] flex gap-2 items-center justify-center">
+                      {signerData?.name}
+                      <img src={rightArrowBold} alt="user details" />
+                    </span>
+                  </span>
+                </span>
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Dropdown menu with description">
+                <DropdownItem
+                  key="my-account"
+                  className="flex redHatMedium text-[14px]"
+                  startContent={<img src={myAccount} alt="" />}
+                >
+                  My Account
+                </DropdownItem>
+                <DropdownItem
+                  key="ap-community"
+                  className="flex redHatMedium text-[14px]"
+                  startContent={<img src={wpCommunity} alt="" />}
+                >
+                  WhatsApp Community
+                </DropdownItem>
+                <DropdownItem
+                  key="terms-of-use"
+                  className="flex redHatMedium text-[14px]"
+                  startContent={<img src={termsOfUse} alt="" />}
+                >
+                  Terms of use
+                </DropdownItem>
+                <DropdownItem
+                  key="privacy-policy"
+                  className="flex redHatMedium text-[14px]"
+                  startContent={<img src={privacyPolicy} alt="" />}
+                >
+                  Privacy Policy
+                </DropdownItem>
+                <DropdownItem
+                  key="logout"
+                  className="flex redHatMedium text-[14px] border border-t-1 border-l-0 border-r-0 border-b-0"
+                  startContent={<img src={logout} alt="" />}
+                  onClick={logOut}
+                >
+                  Logout
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          ) : (
             <Button
               onClick={() => navigate("/login/?page=login")}
               className="bg-transparent p-0  redHatMedium text-[14px] md:text-[16px] text-[#000000] leading-[21px]"

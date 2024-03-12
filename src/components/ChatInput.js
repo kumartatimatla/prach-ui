@@ -64,6 +64,7 @@ const ChatInput = ({ className }) => {
           endContent={
             <span className="flex gap-1 md:gap-5 w-full border border-t-[#71717160] border-r-0 border-l-0 border-b-0 justify-end pt-[5px]">
               <Button
+                isDisabled
                 className={`min-w-max bg-transparent p-0 ${
                   isMobile ? "p-0 w-[30px] h-[30px]" : ""
                 }`}
@@ -75,6 +76,7 @@ const ChatInput = ({ className }) => {
                 />
               </Button>
               <Button
+                isDisabled
                 className={`min-w-max bg-transparent p-0 ${
                   isMobile ? "p-0 w-[30px] h-[30px]" : ""
                 }`}
@@ -127,10 +129,10 @@ const ChatInput = ({ className }) => {
           // startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
           endContent={
             <span className="flex gap-5">
-              <Button className="min-w-max bg-transparent p-0">
+              <Button isDisabled className="min-w-max bg-transparent p-0">
                 <img src={recordIcon} alt="search arrow" />
               </Button>
-              <Button className="min-w-max bg-transparent p-0">
+              <Button isDisabled className="min-w-max bg-transparent p-0">
                 <img src={attachmentIcon} alt="search arrow" />
               </Button>
               <Button

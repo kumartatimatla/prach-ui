@@ -24,6 +24,7 @@ import newKnowledge from "../images/new-knowledge.svg";
 import { isMobile } from "react-device-detect";
 import ChatHistoryAccordion from "./ChatHistoryAccordion";
 import { googleLogout } from "@react-oauth/google";
+import { sendLogoutData } from "./services";
 
 const Sidebar = () => {
   const context = useContext(AppContext);
@@ -50,8 +51,9 @@ const Sidebar = () => {
       setIsOpenFaqAccordion(true);
     }
   }, [chatHistory]);
-  const logOut = () => {
+  const logOut = async () => {
     googleLogout();
+    await sendLogoutData(signerData?.id);
     setChatHistory([]);
     setSignerData([]);
     navigate(`/`);

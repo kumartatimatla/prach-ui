@@ -22,6 +22,7 @@ import logout from "../images/logout.svg";
 import { isMobile } from "react-device-detect";
 import rightArrowBold from "../images/right-arrow-bold.svg";
 import { googleLogout } from "@react-oauth/google";
+import { sendLogoutData } from "./services";
 
 const Header = ({ className }) => {
   const context = useContext(AppContext);
@@ -42,8 +43,9 @@ const Header = ({ className }) => {
     };
   }, []);
 
-  const logOut = () => {
+  const logOut = async () => {
     googleLogout();
+    await sendLogoutData(signerData?.id);
     setChatHistory([]);
     setSignerData([]);
     navigate(`/`);

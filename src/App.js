@@ -12,6 +12,7 @@ import {
   ModalContent,
   useDisclosure,
 } from "@nextui-org/react";
+import { sendLoginData } from "./components/services";
 
 export const AppContext = createContext();
 function App() {
@@ -31,6 +32,7 @@ function App() {
   const [isOpenFaqAccordion, setIsOpenFaqAccordion] = useState(false);
   const [isOpenChatAccordion, setIsOpenChatAccordion] = useState(true);
   const [questionPrompt, setQuestionPrompt] = useState("");
+  const [loginPayload, setLoginPayload] = useState({});
 
   useEffect(() => {
     const header = document.getElementById("header");
@@ -53,6 +55,43 @@ function App() {
       onOpen();
     }
   }, [chatResponse, checkLogin]);
+
+  useEffect(() => {
+    let {
+      id,
+      email,
+      verified_email,
+      name,
+      given_name,
+      family_name,
+      picture,
+      locale,
+    } = signerData;
+    let { deviceType, operatingSystem, browser, geolocation } = loginPayload;
+    let loginObj = {
+      user_id: id,
+      email: email,
+      email_verified: true,
+      full_name: name,
+      given_name: given_name,
+      family_name: family_name,
+      profile_picture_url: picture,
+      locale: locale,
+      login_method: "Google OAuth",
+      device_type: deviceType,
+      operating_system: operatingSystem,
+      browser: browser,
+      // ip_address: "900.118.2.1",
+      geolocation: geolocation,
+      // number_of_logins: 1,
+      // failed_login_attempts: "",
+      referral_source: "Direct",
+    };
+    const sendLoginDataObj = async () => {
+      await sendLoginData(loginObj);
+    };
+    sendLoginDataObj();
+  }, [loginPayload]);
 
   return (
     <AppContext.Provider
@@ -83,6 +122,8 @@ function App() {
         setIsOpenChatAccordion,
         questionPrompt,
         setQuestionPrompt,
+        loginPayload,
+        setLoginPayload,
       }}
     >
       <div className="flex flex-col min-h-screen relative bg-[#f3f3f385]">
@@ -104,7 +145,11 @@ function App() {
               {(onClose) => (
                 <>
                   <ModalBody className="p-0">
-                    <Login onClose={onClose} className={"rounded-[30px]"} />
+                    <Login
+                      onClose={onClose}
+                      fromHomePage={true}
+                      className={"rounded-[30px]"}
+                    />
                   </ModalBody>
                 </>
               )}

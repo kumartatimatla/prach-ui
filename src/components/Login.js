@@ -11,10 +11,17 @@ import closeIcon from "../images/close-icon.svg";
 import googleIcon from "../images/google-icon.png";
 import microsoftIcon from "../images/microsoft-icon.png";
 
-const Login = ({ className, onClose }) => {
+const Login = ({ className, onClose, fromHomePage }) => {
   const context = useContext(AppContext);
   const navigate = useNavigate();
-  const { setCurrentPage, setSignerData, currentPage, signerData } = context;
+  const {
+    setCurrentPage,
+    setSignerData,
+    currentPage,
+    signerData,
+    loginPayload,
+    setLoginPayload,
+  } = context;
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
   const page = queryParams.get("page");
@@ -31,6 +38,71 @@ const Login = ({ className, onClose }) => {
     }
   }, [signerData]);
 
+  // Function to get the operating system
+  function getOperatingSystem() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/android/i.test(userAgent)) {
+      return "Android";
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return "iOS";
+    } else if (/windows phone/i.test(userAgent)) {
+      return "Windows Phone";
+    } else if (/windows/i.test(userAgent)) {
+      return "Windows";
+    } else if (/macintosh|mac os x/i.test(userAgent)) {
+      return "Mac OS";
+    } else if (/linux/i.test(userAgent)) {
+      return "Linux";
+    } else {
+      return "Unknown";
+    }
+  }
+
+  function getBrowser() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/OPR/i.test(userAgent)) {
+      return "Opera";
+    } else if (/Chrome/i.test(userAgent)) {
+      return "Chrome";
+    } else if (/Firefox/i.test(userAgent)) {
+      return "Firefox";
+    } else if (/Safari/i.test(userAgent)) {
+      return "Safari";
+    } else if (/Edge/i.test(userAgent)) {
+      return "Edge";
+    } else if (/MSIE/i.test(userAgent)) {
+      return "IE";
+    } else {
+      return "Unknown";
+    }
+  }
+
+  const getAdditionalLoginData = async () => {
+    const deviceType =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+        ? "Mobile"
+        : "Desktop";
+    const operatingSystem = getOperatingSystem();
+    const browser = getBrowser();
+
+    try {
+      const position = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+      const { latitude, longitude } = position.coords;
+      const geolocation = { latitude, longitude };
+      setLoginPayload({ deviceType, operatingSystem, browser, geolocation });
+      return { deviceType, operatingSystem, browser, geolocation };
+    } catch (error) {
+      console.error("Error getting geolocation:", error);
+      return { deviceType, operatingSystem, browser, geolocation: null };
+    }
+  };
+
   const HandleWhatsappLink = () => {
     window.open("https://chat.whatsapp.com/LHn5MBkfqPqJ8WSVUgst3v", "_blank");
   };
@@ -43,9 +115,10 @@ const Login = ({ className, onClose }) => {
   const navigateHome = () => {
     navigate("/");
   };
+
   const login = useGoogleLogin({
-    onSuccess: (codeResponse) => {
-      axios
+    onSuccess: async (codeResponse) => {
+      await axios
         .get(
           `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
           {
@@ -55,9 +128,12 @@ const Login = ({ className, onClose }) => {
             },
           }
         )
-        .then((res) => {
+        .then(async (res) => {
           setSignerData(res.data);
-          onClose();
+          await getAdditionalLoginData();
+          if (fromHomePage) {
+            onClose();
+          }
           navigateHome();
         })
         .catch((err) => console.log(err));

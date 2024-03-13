@@ -237,3 +237,6 @@ body {
 .modalStyle {
   transform: translateY(0) !important;
 }
+.cursorStyles {
+  caret-color: #000000;
+}

@@ -210,7 +210,7 @@ const Login = ({ className, onClose, fromHomePage }) => {
           <Divider className="mt-[30px] md:mt-[70px]" />
           <div
             className="flex items-center justify-center gap-2 mt-[20px] mb-[12px] md:mb-[20px] cursor-pointer"
-            onClick={HandleWhatsappLink}
+            onClick={handleWp}
           >
             <img
               src={whatsappIcon}

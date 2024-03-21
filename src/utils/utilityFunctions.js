@@ -16,7 +16,10 @@ export const handleSearch = async (ctx, navigate, prompt = "") => {
     setQuestionPrompt,
     setIsOpenChatAccordion,
   } = ctx;
-  if (chatResponse.length === 2 && Object.keys(signerData).length < 1) {
+  if (
+    (chatResponse.length === 2 || chatHistory.length === 2) &&
+    Object.keys(signerData).length < 1
+  ) {
     setCheckLogin(true);
   } else {
     try {
@@ -30,7 +33,7 @@ export const handleSearch = async (ctx, navigate, prompt = "") => {
       setQuestionPrompt(questionPromptTemp);
       navigate("/results");
       const response = await axios.post(
-        "http://54.162.133.116:5001/handle_user_prompt",
+        "https://www.prach.org:5001/handle_user_prompt",
         {
           prompt: questionPromptTemp,
           rejectUnauthorized: false,

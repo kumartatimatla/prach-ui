@@ -26,7 +26,13 @@ import { sendLogoutData } from "./services";
 
 const Header = ({ className }) => {
   const context = useContext(AppContext);
-  const { currentPage, signerData, setChatHistory, setSignerData } = context;
+  const {
+    currentPage,
+    signerData,
+    setChatHistory,
+    setSignerData,
+    setChatResponse,
+  } = context;
   const navigate = useNavigate();
 
   const [scrolled, setScrolled] = useState(false);
@@ -48,6 +54,7 @@ const Header = ({ className }) => {
     await sendLogoutData(signerData?.id);
     setChatHistory([]);
     setSignerData([]);
+    setChatResponse([]);
     navigate(`/`);
   };
 

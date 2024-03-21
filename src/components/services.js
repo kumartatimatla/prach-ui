@@ -4,7 +4,7 @@ export const submitFeedback = async (data) => {
   let resp = null;
   try {
     resp = await axios.post(
-      "http://54.162.133.116:5001/submit_feedback",
+      "https://www.prach.org:5001/submit_feedback",
       data,
       {
         headers: {
@@ -22,7 +22,7 @@ export const sendLoginData = async (data) => {
   let resp = null;
   try {
     resp = await axios.post(
-      "http://54.162.133.116:5001/api/create_audit_record",
+      "https://www.prach.org:5001/api/create_audit_record",
       data,
       {
         headers: {
@@ -40,7 +40,7 @@ export const sendLogoutData = async (id) => {
   let resp = null;
   try {
     resp = await axios.post(
-      `http://54.162.133.116:5001/api/update_audit_record/${id}`
+      `https://www.prach.org:5001/api/update_audit_record/${id}`
     );
   } catch (error) {
     resp = error.message;

@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import likeOutlined from "../images/like-outline.svg";
@@ -8,9 +8,10 @@ import Feedback from "./Feedback";
 
 const AnswerComponent = ({ answer, obj }) => {
   const lastWordStringIndex = answer.substring(0, obj.viewed);
-  const [displayedText, setDisplayedText] = useState(
-    answer.substring(0, lastWordStringIndex.lastIndexOf(" "))
-  );
+  const [displayedText, setDisplayedText] = useState("");
+  useEffect(() => {
+    setDisplayedText(answer.substring(0, lastWordStringIndex.lastIndexOf(" ")));
+  }, [answer]);
   const [textLength, setTextLength] = useState(
     lastWordStringIndex.lastIndexOf(" ")
   );
@@ -34,6 +35,7 @@ const AnswerComponent = ({ answer, obj }) => {
   return (
     <div>
       <Markdown rehypePlugins={[rehypeRaw]}>{displayedText}</Markdown>
+
       {showMore && (
         <>
           {/* <div className="flex gap-3 mt-[15px] mb-[6px]">

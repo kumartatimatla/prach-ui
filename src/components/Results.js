@@ -21,6 +21,7 @@ const Results = () => {
     isOpenSidebar,
     questionPrompt,
     setIsOpenSidebar,
+    chatHistory,
   } = context;
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
@@ -51,7 +52,7 @@ const Results = () => {
 
   useEffect(() => {
     if (
-      (chatResponse.length === 2 || checkLogin) &&
+      (chatResponse.length === 2 || chatHistory.length === 2 || checkLogin) &&
       Object.keys(signerData).length < 1
     ) {
       setCheckLogin(false);
@@ -128,7 +129,7 @@ const Results = () => {
           );
         })}
         {loading && (
-          <div id="loader" className="flex flex-col gap-2 h-[80vh]">
+          <div id="loader" className="flex flex-col gap-2 h-[80vh] mt-[20px]">
             <span className="redHatBold text-[22px] md:text-[32px]">
               {questionPrompt}
             </span>
@@ -145,7 +146,7 @@ const Results = () => {
           </div>
         )}
         <ChatInput
-          className={`fixed z-[100] bottom-[10%] ${
+          className={`fixed z-[100] bottom-[6%] ${
             isMobile || isTablet || isIPad13 || isAndroid
               ? "w-[94%]"
               : "w-[60%]"

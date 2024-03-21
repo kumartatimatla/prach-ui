@@ -141,12 +141,13 @@ const Feedback = ({ chatObj }) => {
                   onPress={handleCancel}
                   className="text-black font-semibold"
                 >
-                  cancel
+                  Cancel
                 </Button>
+                {console.log("ratingFilled", ratingFilled)}
                 <Button
                   isDisabled={
-                    !userFeedback ||
-                    Number(ratingFilled[ratingFilled.length - 1]) === 0
+                    Number(ratingFilled[ratingFilled.length - 1]) < 1 ||
+                    ratingFilled.length < 1
                   }
                   onPress={onClose}
                   onClick={() => handleSubmit(chatObj)}

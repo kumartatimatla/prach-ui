@@ -37,6 +37,7 @@ const Sidebar = () => {
     setIsOpenFaqAccordion,
     setChatHistory,
     setSignerData,
+    setChatResponse,
   } = context;
   const navigate = useNavigate();
 
@@ -55,6 +56,7 @@ const Sidebar = () => {
     googleLogout();
     await sendLogoutData(signerData?.id);
     setChatHistory([]);
+    setChatResponse([]);
     setSignerData([]);
     navigate(`/`);
   };
@@ -184,6 +186,9 @@ const Sidebar = () => {
             <ChatHistoryAccordion />
           </div>
         )}
+        <Button className="py-1 px-0 min-h-fit h-fit bg-transparent">
+          My Story
+        </Button>
         <div className="mt-[48px]">
           <span className="text-[12px] leading-[14px] redHatMedium text-[#646464]">
             Start a new knowledge conversation

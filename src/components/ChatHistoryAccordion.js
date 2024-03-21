@@ -36,12 +36,14 @@ const ChatHistoryAccordion = () => {
     handleSearch(context, navigate, prompt);
   };
   const handleLinkClick = (data) => {
+    console.log("data", data);
     setActiveFaq(data.question);
     if (isMobile) {
       setIsOpenSidebar(false);
     }
     setChatResponse([data]);
   };
+  console.log("chat resp", context.chatResponse);
   return (
     <div className="mt-3">
       <div className="">
@@ -60,6 +62,7 @@ const ChatHistoryAccordion = () => {
             )}
           </span>
         </div>
+        {console.log("chatHistory", chatHistory)}
         <div
           className={`overflow-hidden transition-all duration-300 ${
             isOpenChatAccordion ? "max-h-[1000px]" : "max-h-0"

@@ -12,6 +12,7 @@ import { handleSearch } from "../utils/utilityFunctions";
 import { accoladesData } from "../utils/accoladesData";
 import Accolades from "./Accolades";
 import loginImg from "../images/login.svg";
+import { isMobile } from "react-device-detect";
 
 const HomePage = ({ className }) => {
   const context = useContext(AppContext);
@@ -30,6 +31,18 @@ const HomePage = ({ className }) => {
     handleSearch(context, navigate, prompt);
   };
 
+  useEffect(() => {
+    let element = null;
+    if (isMobile) {
+      element = document.getElementById("mainChatMobile");
+    } else {
+      element = document.getElementById("mainChatDesktop");
+    }
+    if (element) {
+      element.focus();
+    }
+  }, []);
+
   return (
     <main className={cn("flex flex-col justify-between", className)}>
       <div className="flex flex-col items-center gap-5 md:gap-9 mt-8 md:mt-11 ">
@@ -44,6 +57,15 @@ const HomePage = ({ className }) => {
           Autism Knowledge Assistant!
         </h2>
         <ChatInput className="w-full md:w-[70%]" />
+        <p className="text-center w-full md:w-[70%] text-sm md:text-lg">
+          <em>
+            Prach AI chatbot is designed to offer support and information, not
+            medical advice. Always consult with a qualified healthcare
+            professional before making any decisions about your health or
+            treatment. Our conversations do not replace professional medical
+            consultations.
+          </em>
+        </p>
       </div>
       <div className="flex flex-col items-center gap-4">
         <div className="text-[18px] md:text-[24px] leading-[31px] text-[#8B8B8B] redHatBold mt-6">

@@ -13,6 +13,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { sendLoginData } from "./components/services";
+import MyStory from "./components/MyStory";
 
 export const AppContext = createContext();
 function App() {
@@ -71,7 +72,7 @@ function App() {
     let loginObj = {
       user_id: id,
       email: email,
-      email_verified: true,
+      email_verified: true ? "true" : "false",
       full_name: name,
       given_name: given_name,
       family_name: family_name,
@@ -90,7 +91,9 @@ function App() {
     const sendLoginDataObj = async () => {
       await sendLoginData(loginObj);
     };
-    sendLoginDataObj();
+    if (Object.keys(signerData).length > 0) {
+      sendLoginDataObj();
+    }
   }, [loginPayload]);
 
   return (
@@ -177,6 +180,7 @@ function App() {
             />
             <Route path="/results" exact element={<Results />} />
             <Route path="/history" exact element={<History />} />
+            <Route path="/my-story" exact element={<MyStory />} />
           </Routes>
 
           <Footer className="bg-[#EFEFEF] py-4 px-5 sm:px-10 lg:px-20 fixed w-full bottom-0 z-[55]" />

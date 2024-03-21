@@ -30,21 +30,12 @@ const ChatInput = ({ className }) => {
       handleSearch(context, navigate);
     }
   };
-  useEffect(() => {
-    let element = null;
-    if (isMobile) {
-      element = document.getElementById("mainChatMobile");
-    } else {
-      element = document.getElementById("mainChatDesktop");
-    }
-    if (element) {
-      element.focus();
-    }
-  }, []);
+
   return (
     <div className={cn("flex", className)}>
       {isMobile && (
         <Textarea
+          tabIndex={-1}
           id="mainChatMobile"
           value={enteredPrompt}
           onKeyDown={handleKeyPress}

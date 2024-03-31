@@ -17,19 +17,19 @@ const SuggestionCards = ({
       name={title}
       onClick={handleCardClick}
     >
-      <Card className="h-full min-h-[80px] cursor-pointer max-w-[391px] rounded-[14px]">
+      <Card className="h-full min-h-[60px] cursor-pointer max-w-[391px] rounded-[14px]">
         <CardBody className="flex flex-row items-center justify-between gap-3 h-full p-[15px]">
           <span className="flex items-center gap-2">
-            <span className="min-w-[20px]">
+            {/* <span className="min-w-[20px]">
               <Image src={iconSrc} alt="search card" className="rounded-none" />
-            </span>
+            </span> */}
             <span className="flex flex-col">
-              <span className="redHatBold text-[14px] md:text-[16px] leading-[21px]">
+              <span className="redHatBold text-[12px] md:text-[14px] leading-[21px]">
                 {title}
               </span>
-              <span className="redHatMedim font-semibold text-[12px] leading-[16px] text-[#505050]">
+              {/* <span className="redHatMedim font-semibold text-[12px] leading-[16px] text-[#505050]">
                 {subTitle}
-              </span>
+              </span> */}
             </span>
           </span>
           <img

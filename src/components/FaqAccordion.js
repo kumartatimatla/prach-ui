@@ -1,6 +1,6 @@
 // Accordion.js
 import { Button, Divider } from "@nextui-org/react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import upArrowBold from "../images/up-arrow-bold.svg";
 import rightArrowlight from "../images/right-arrow-light.svg";
 import rightArrowBold from "../images/right-arrow-bold.svg";
@@ -20,12 +20,14 @@ const FaqAccordion = () => {
     isOpenFaqAccordion,
     setIsOpenFaqAccordion,
     setIsOpenSidebar,
+    setIsOpenChatAccordion,
   } = context;
 
   const navigate = useNavigate();
 
   const toggleAccordion = () => {
     setIsOpenFaqAccordion(!isOpenFaqAccordion);
+    setIsOpenChatAccordion(false);
   };
 
   const handleClick = (e) => {
@@ -46,7 +48,7 @@ const FaqAccordion = () => {
           }`}
           onClick={toggleAccordion}
         >
-          <span>Discover the world of Autism</span>
+          <span>Frequently Asked Questions</span>
           <span className="">
             {isOpenFaqAccordion ? (
               <img src={upArrowBold} alt="up arrow" />
@@ -61,7 +63,7 @@ const FaqAccordion = () => {
           } flex flex-col items-start`}
         >
           <div className="flex flex-col gap-2">
-            {suggestedCardsData.slice(0, 7).map((item, i) => {
+            {suggestedCardsData.slice(0, 12).map((item, i) => {
               return (
                 <button
                   className={`flex items-center gap-[11px] ${

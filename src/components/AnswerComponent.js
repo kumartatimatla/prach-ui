@@ -5,6 +5,7 @@ import rehypeRaw from "rehype-raw";
 import likeOutlined from "../images/like-outline.svg";
 import disLikeOutlined from "../images/dislike-outline.svg";
 import Feedback from "./Feedback";
+import { BsClipboard2 } from "react-icons/bs";
 
 const AnswerComponent = ({ answer, obj }) => {
   const lastWordStringIndex = answer.substring(0, obj.viewed);
@@ -35,7 +36,6 @@ const AnswerComponent = ({ answer, obj }) => {
   return (
     <div>
       <Markdown rehypePlugins={[rehypeRaw]}>{displayedText}</Markdown>
-
       {showMore && (
         <>
           {/* <div className="flex gap-3 mt-[15px] mb-[6px]">

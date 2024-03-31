@@ -16,7 +16,8 @@ import { isMobile } from "react-device-detect";
 
 const HomePage = ({ className }) => {
   const context = useContext(AppContext);
-  const { setCurrentPage, setActiveFaq, setIsOpenFaqAccordion } = context;
+  const { setCurrentPage, setActiveFaq, setIsOpenFaqAccordion, signerData } =
+    context;
   const navigate = useNavigate();
   const [showMoreCards, setShowMoreCards] = useState(false);
 
@@ -24,10 +25,16 @@ const HomePage = ({ className }) => {
     setCurrentPage("home");
   }, [setCurrentPage]);
 
+  useEffect(() => {
+    if (Object.keys(signerData).length > 0 && signerData?.verified_email) {
+      navigate("/results");
+    }
+  }, [signerData]);
+
   const handleCardClick = (e) => {
     let prompt = e.currentTarget.name;
     setActiveFaq(prompt);
-    setIsOpenFaqAccordion(true);
+    // setIsOpenFaqAccordion(true);
     handleSearch(context, navigate, prompt);
   };
 
@@ -50,26 +57,23 @@ const HomePage = ({ className }) => {
           <img
             src={logo}
             alt="Prach Logo"
-            className="rounded-none w-[60px] h-[60px] md:w-[98px] md:h-[98px]"
+            className="rounded-none w-[70px] h-[70px] md:w-[120px] md:h-[120px]"
           />
         </div>
-        <h2 className="text-2xl font-bold text-center redHatBold text-[16px] md:text-[32px] leading-[20px] md:leading-[43px] w-[60%]">
-          Autism Knowledge Assistant!
+        <h2 className="text-2xl font-bold text-center redHatBold text-[16px] md:text-[22px] leading-[20px] md:leading-[43px] w-[60%]">
+          Special Needs Companion
         </h2>
         <ChatInput className="w-full md:w-[70%]" />
-        <p className="text-center w-full md:w-[70%] text-sm md:text-lg">
+        <p className="text-center w-full md:w-[70%] text-sm md:text-md">
           <em>
-            Prach AI chatbot is designed to offer support and information, not
-            medical advice. Always consult with a qualified healthcare
-            professional before making any decisions about your health or
-            treatment. Our conversations do not replace professional medical
-            consultations.
+            Prach AI Chatbot is designed to offer Support and Information. Our
+            conversations do not replace Medical Advice
           </em>
         </p>
       </div>
       <div className="flex flex-col items-center gap-4">
-        <div className="text-[18px] md:text-[24px] leading-[31px] text-[#8B8B8B] redHatBold mt-6">
-          Discover the world of Autism
+        <div className="text-[18px] md:text-[20px] leading-[31px] text-[#8B8B8B] redHatBold mt-6">
+          Frequently Asked Questions
         </div>
         <div className="gap-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
           {suggestedCardsData

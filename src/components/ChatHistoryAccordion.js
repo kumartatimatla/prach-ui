@@ -1,6 +1,6 @@
 // Accordion.js
 import { Button, Divider } from "@nextui-org/react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import upArrowBold from "../images/up-arrow-bold.svg";
 import rightArrowlight from "../images/right-arrow-light.svg";
 import rightArrowBold from "../images/right-arrow-bold.svg";
@@ -22,13 +22,23 @@ const ChatHistoryAccordion = () => {
     setIsOpenSidebar,
     setChatResponse,
     chatHistory,
+    setIsOpenFaqAccordion,
   } = context;
 
   const navigate = useNavigate();
 
   const toggleAccordion = () => {
     setIsOpenChatAccordion(!isOpenChatAccordion);
+    setIsOpenFaqAccordion(false);
   };
+
+  useEffect(() => {
+    console.log("inside");
+    if (chatHistory.length > 0) {
+      setIsOpenFaqAccordion(false);
+      setIsOpenChatAccordion(true);
+    }
+  }, [chatHistory, setIsOpenFaqAccordion, setIsOpenChatAccordion]);
 
   const handleClick = (e) => {
     let prompt = e.currentTarget.dataset.name;
@@ -36,14 +46,12 @@ const ChatHistoryAccordion = () => {
     handleSearch(context, navigate, prompt);
   };
   const handleLinkClick = (data) => {
-    console.log("data", data);
     setActiveFaq(data.question);
     if (isMobile) {
       setIsOpenSidebar(false);
     }
     setChatResponse([data]);
   };
-  console.log("chat resp", context.chatResponse);
   return (
     <div className="mt-3">
       <div className="">
@@ -62,7 +70,6 @@ const ChatHistoryAccordion = () => {
             )}
           </span>
         </div>
-        {console.log("chatHistory", chatHistory)}
         <div
           className={`overflow-hidden transition-all duration-300 ${
             isOpenChatAccordion ? "max-h-[1000px]" : "max-h-0"

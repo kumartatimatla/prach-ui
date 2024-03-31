@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "../utils/cn";
 import useScreenSize from "../utils/useScreenSize";
+import emailIcon from "../images/email-48.png";
 import {
   Dropdown,
   DropdownTrigger,
@@ -41,20 +42,26 @@ const Footer = ({ className }) => {
     <footer
       id="footer"
       className={cn(
-        "text-[12px] sm:text-[14px] leading-[18px] flex justify-between px-20 py-4 text-[#4A4A4A] redHatMedium font-semibold",
+        "text-[12px] sm:text-[14px] leading-[8px] flex justify-between px-20  text-[#4A4A4A] redHatMedium font-semibold",
         className
       )}
     >
-      <div>&copy; Prach, 2024</div>
-      <div className="flex gap-5">
-        {footerItems.slice(0, footerItemsLimit).map((item) => {
+      <div className="flex items-center justify-center">&copy; Prach, 2024</div>
+      <div className="flex gap-2 items-center justify-center">
+        <img
+          src={emailIcon}
+          alt="prach logo"
+          className="h-[20px] w-[20px] pt-[2px]"
+        />
+        <b>prachaibot@gmail.com</b>
+        {/* {footerItems.slice(0, footerItemsLimit).map((item) => {
           return (
             <span key={item.key} className="cursor-default">
               {item.data}
             </span>
           );
-        })}
-        {footerItemsLimit !== footerItems.length && (
+        })} */}
+        {/* {footerItemsLimit !== footerItems.length && (
           <Dropdown>
             <DropdownTrigger>
               <span className="rotate-90 cursor-pointer">
@@ -83,7 +90,7 @@ const Footer = ({ className }) => {
               }}
             </DropdownMenu>
           </Dropdown>
-        )}
+        )} */}
       </div>
     </footer>
   );

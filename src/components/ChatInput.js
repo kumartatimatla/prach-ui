@@ -67,7 +67,7 @@ const ChatInput = ({ className }) => {
           // startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
           endContent={
             <span className="flex gap-1 md:gap-5 w-full border border-t-[#71717160] border-r-0 border-l-0 border-b-0 justify-end pt-[5px]">
-              <Button
+              {/* <Button
                 isDisabled
                 className={`min-w-max bg-transparent p-0 ${
                   isMobile ? "p-0 w-[30px] h-[30px]" : ""
@@ -78,15 +78,15 @@ const ChatInput = ({ className }) => {
                   alt="search arrow"
                   className={`${isMobile ? "w-[25px] h-[25px]" : ""}`}
                 />
-              </Button>
-              <Button
+              </Button> */}
+              {/* <Button
                 isDisabled
                 className={`min-w-max bg-transparent p-0 ${
                   isMobile ? "p-0 w-[30px] h-[30px]" : ""
                 }`}
               >
                 <img src={attachmentIcon} alt="search arrow" className="" />
-              </Button>
+              </Button> */}
               <Button
                 disabled={isDisabled}
                 onClick={() => handleSearch(context, navigate)}
@@ -135,12 +135,12 @@ const ChatInput = ({ className }) => {
           // startContent={<span className="text-green-400 text-2xl pb-1">|</span>}
           endContent={
             <span className="flex gap-5">
-              <Button isDisabled className="min-w-max bg-transparent p-0">
+              {/* <Button isDisabled className="min-w-max bg-transparent p-0">
                 <img src={recordIcon} alt="search arrow" />
               </Button>
               <Button isDisabled className="min-w-max bg-transparent p-0">
                 <img src={attachmentIcon} alt="search arrow" />
-              </Button>
+              </Button> */}
               <Button
                 disabled={isDisabled}
                 onClick={() => handleSearch(context, navigate)}

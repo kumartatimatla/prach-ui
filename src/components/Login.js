@@ -173,10 +173,11 @@ const Login = ({ className, onClose, fromHomePage }) => {
                 className="w-[60px] h-[60px] md:h-[99px] md:w-[98px]"
               />
             </div>
-            <span className="redHatMedium text-[16px] md:text-[20px] text-[#606060] text-center mt-[15px] md:mt-[26px] mb-[15px] md:mb-[26px]">
-              Bridging connections and empowering autistic journeys
+            <span className="redHatBold text-[16px] md:text-[20px] text-[#000000] text-center mt-[15px] md:mt-[26px] mb-[15px] md:mb-[26px]">
+              {/* Bridging connections and empowering autistic journeys */}
+              Special Needs Companion
             </span>
-            <span className="text-[20px] md:text-[24px] redHatBold text-[#212121] mb-[10px] mt-[10px]">
+            <span className="text-[20px] md:text-[22px] redHatBold text-[#212121] mb-[10px] mt-[10px]">
               Log in with
             </span>
             <div className="flex w-full justify-between gap-3">

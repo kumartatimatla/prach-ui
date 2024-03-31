@@ -44,14 +44,18 @@ const Sidebar = () => {
   const toggleSidebar = () => {
     setIsOpenSidebar(!isOpenSidebar);
   };
-  useEffect(() => {
-    if (chatHistory.length > 0) {
-      setIsOpenChatAccordion(true);
-      setIsOpenFaqAccordion(false);
-    } else {
-      setIsOpenFaqAccordion(true);
-    }
-  }, [chatHistory]);
+  // useEffect(() => {
+  //   if (chatHistory.length > 0) {
+  //     setIsOpenChatAccordion(true);
+  //     setIsOpenFaqAccordion(false);
+  //   } else {
+  //     setIsOpenFaqAccordion(true);
+  //   }
+  // }, [chatHistory]);
+
+  console.log("chatAcc", context.isOpenChatAccordion);
+  console.log("faqAcc", context.isOpenFaqAccordion);
+  console.log("chat history", chatHistory);
   const logOut = async () => {
     googleLogout();
     await sendLogoutData(signerData?.id);
@@ -60,6 +64,7 @@ const Sidebar = () => {
     setSignerData([]);
     navigate(`/`);
   };
+
   return (
     <div
       className={`fixed h-full bg-[#FFFFFF] shadow-lg text-black transition-transform transform ${
@@ -79,9 +84,12 @@ const Sidebar = () => {
         />
       </button>
       <div className="">
-        <span className="flex items-center gap-2 md:gap-1">
-          <img src={logo} alt="Prach Logo" className="w-[58px] h-[59px]" />
-          {Object.keys(signerData).length > 0 && signerData?.verified_email ? (
+        <span className="flex items-center gap-2 md:gap-2">
+          <img src={logo} alt="Prach Logo" className="w-[75px] h-[75px]" />
+          <span className="font-bold text-center redHatBold text-[16px] md:text-[18px] leading-[26px] md:leading-[26px] w-[60%]">
+            Special Needs Companion
+          </span>
+          {/* {Object.keys(signerData).length > 0 && signerData?.verified_email ? (
             <Dropdown
               showArrow
               placement={`${isMobile}?"top-end":right-start`}
@@ -175,7 +183,7 @@ const Sidebar = () => {
                 </span>
               </span>
             </span>
-          )}
+          )} */}
         </span>
         <Divider className="mt-[16px] bg-[#D5D5D5]" />
         <div className="mt-[15px]">
@@ -186,7 +194,7 @@ const Sidebar = () => {
             <ChatHistoryAccordion />
           </div>
         )}
-        <Button className="py-1 px-0 min-h-fit h-fit bg-transparent">
+        {/* <Button className="py-1 px-0 min-h-fit h-fit bg-transparent">
           My Story
         </Button>
         <div className="mt-[48px]">
@@ -206,7 +214,7 @@ const Sidebar = () => {
           >
             New Knowledge
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

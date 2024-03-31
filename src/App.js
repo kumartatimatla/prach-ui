@@ -14,6 +14,7 @@ import {
 } from "@nextui-org/react";
 import { sendLoginData } from "./components/services";
 import MyStory from "./components/MyStory";
+import ResultDetail from "./components/ResultDetail";
 
 export const AppContext = createContext();
 function App() {
@@ -179,11 +180,12 @@ function App() {
               }
             />
             <Route path="/results" exact element={<Results />} />
+            <Route path="/results/:id" exact element={<ResultDetail />} />
             <Route path="/history" exact element={<History />} />
             <Route path="/my-story" exact element={<MyStory />} />
           </Routes>
 
-          <Footer className="bg-[#EFEFEF] py-4 px-5 sm:px-10 lg:px-20 fixed w-full bottom-0 z-[55]" />
+          <Footer className="bg-[#EFEFEF] py-2 px-5 sm:px-10 lg:px-20 fixed w-full bottom-0 z-[55]" />
         </Router>
       </div>
     </AppContext.Provider>

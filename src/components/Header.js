@@ -6,6 +6,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Divider,
+  Tooltip,
 } from "@nextui-org/react";
 import React, { useContext, useEffect, useState } from "react";
 import loginImg from "../images/login.svg";
@@ -80,7 +81,7 @@ const Header = ({ className }) => {
         </Button>
       ) : (
         <>
-          {currentPage !== "results" && (
+          {/* {currentPage !== "results" && (
             <Button
               onClick={() => navigate("/")}
               className="bg-transparent p-0 redHatMedium text-[14px] md:text-[16px] text-[#000000] leading-[21px]"
@@ -94,7 +95,7 @@ const Header = ({ className }) => {
             >
               New Knowledge
             </Button>
-          )}
+          )} */}
           {Object.keys(signerData).length > 0 && signerData?.verified_email ? (
             <Dropdown
               showArrow
@@ -162,19 +163,27 @@ const Header = ({ className }) => {
               </DropdownMenu>
             </Dropdown>
           ) : (
-            <Button
-              onClick={() => navigate("/login/?page=login")}
-              className="bg-transparent p-0  redHatMedium text-[14px] md:text-[16px] text-[#000000] leading-[21px]"
-              startContent={
-                <Image
-                  src={loginImg}
-                  alt="login image"
-                  className="h-[20px] w-[23px] rounded-none"
-                />
-              }
+            <Tooltip
+              color="warning"
+              closeDelay={5000}
+              content="Login for better experience"
+              className="bg-white text-[12px] rounded-md"
             >
-              Log in
-            </Button>
+              <Button
+                onClick={() => navigate("/login/?page=login")}
+                // className="bg-transparent p-0  redHatMedium text-[14px] md:text-[16px] text-[#000000] leading-[21px]"
+                className="redHatSemiBold min-h-fit h-fit px-[15px] py-[10px] bg-[#1859c9] text-white border border-[#DDDDDD] shadow-lg rounded-xl"
+                startContent={
+                  <Image
+                    src={loginImg}
+                    alt="login image"
+                    className="h-[18px] w-[18px] rounded-none text-white color-[#fff]"
+                  />
+                }
+              >
+                Log in
+              </Button>
+            </Tooltip>
           )}
         </>
       )}

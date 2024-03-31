@@ -8,6 +8,10 @@ import Sidebar from "./Sidebar";
 import loadingLogo from "../images/logo-without-name.svg";
 import { isMobile, isTablet, isIPad13, isAndroid } from "react-device-detect";
 import Feedback from "./Feedback";
+import { BsClipboard2 } from "react-icons/bs";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+// import { WhatsappShareButton } from "react-share";
+// import whatsappIcon from "../images/whatsapp-icon.png";
 
 const Results = () => {
   const context = useContext(AppContext);
@@ -79,6 +83,16 @@ const Results = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+  const [textCopied, setTextCopied] = useState("");
+  const baseUrl = window.location.origin;
+
+  const handleTextCopy = (id) => {
+    setTextCopied(id);
+    setTimeout(() => {
+      setTextCopied("");
+    }, 5000);
+  };
+
   return (
     <div
       className={`${!isOpenSidebar ? "flex items-center justify-center" : ""}`}
@@ -100,9 +114,32 @@ const Results = () => {
             <div key={i}>
               <div
                 id={item.id}
-                className="redHatBold text-[16px] md:text-[32px]"
+                className="redHatBold text-[16px] md:text-[22px] flex items-center"
               >
                 {item.question}
+
+                <CopyToClipboard
+                  text={`${baseUrl}/results/${item.id}`}
+                  onCopy={() => handleTextCopy(item.id)}
+                >
+                  <button
+                    // onClick={() => handleCopyClick(item.id)}
+                    className="cursor-pointer relative"
+                  >
+                    <BsClipboard2 className="scale-1 hover:scale-[0.9] h-[20px] w-[20px]" />
+                    <span className="text-sm redHatRegular absolute top-[150%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg py-1 px-2">
+                      {item.id === textCopied && "copied!"}
+                    </span>
+                  </button>
+                </CopyToClipboard>
+                {/* <WhatsappShareButton
+                  url={`${baseUrl}/results/${item.id}`}
+                >
+                  <img
+                    src={whatsappIcon}
+                    alt="prach logo"
+                  />
+                </WhatsappShareButton> */}
               </div>
               <div className="flex items-center mb-3">
                 <span className="mr-2">
@@ -130,7 +167,7 @@ const Results = () => {
         })}
         {loading && (
           <div id="loader" className="flex flex-col gap-2 h-[80vh] mt-[20px]">
-            <span className="redHatBold text-[22px] md:text-[32px]">
+            <span className="redHatBold text-[16px] md:text-[22px]">
               {questionPrompt}
             </span>
             <div className="flex items-center redHatMedium text-[#6F6F6F] text-[16px] leading-[21px] gap-3">

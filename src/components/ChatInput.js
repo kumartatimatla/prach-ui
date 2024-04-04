@@ -32,7 +32,7 @@ const ChatInput = ({ className }) => {
   };
 
   return (
-    <div className={cn("flex", className)}>
+    <div className={cn("flex flex-col bg-[#F8F8F8]", className)}>
       {isMobile && (
         <Textarea
           tabIndex={-1}
@@ -159,6 +159,12 @@ const ChatInput = ({ className }) => {
           }
         />
       )}
+      <p className="text-center w-full md:w-[100%] text-[10px] md:text-[12px] mt-3">
+        <em>
+          Prach AI Chatbot is designed to offer Support and Information. Our
+          conversations do not replace Medical Advice
+        </em>
+      </p>
     </div>
   );
 };

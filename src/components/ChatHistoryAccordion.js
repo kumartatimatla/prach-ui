@@ -56,7 +56,7 @@ const ChatHistoryAccordion = () => {
     <div className="mt-3">
       <div className="">
         <div
-          className={`cursor-pointer bg-[transparent] w-full flex justify-between p-0 redHatBold text-[16px] md:text-[18px] leading-[23px] items-center ${
+          className={`cursor-pointer bg-[transparent] w-full flex justify-between p-0 redHatBold text-[14px] md:text-[14px] leading-[23px] items-center ${
             isOpenChatAccordion ? "mb-[13px]" : ""
           }`}
           onClick={toggleAccordion}

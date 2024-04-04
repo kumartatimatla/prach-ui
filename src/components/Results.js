@@ -183,7 +183,7 @@ const Results = () => {
           </div>
         )}
         <ChatInput
-          className={`fixed z-[100] bottom-[6%] ${
+          className={`fixed z-[100] bottom-[5%] md:bottom-[4%] ${
             isMobile || isTablet || isIPad13 || isAndroid
               ? "w-[94%]"
               : "w-[60%]"

@@ -43,7 +43,7 @@ const FaqAccordion = () => {
     <div className="">
       <div className="">
         <div
-          className={`cursor-pointer bg-[transparent] w-full flex justify-between p-0 redHatBold text-[16px] md:text-[18px] leading-[23px] items-center ${
+          className={`cursor-pointer bg-[transparent] w-full flex justify-between p-0 redHatBold text-[14px] md:text-[14px] leading-[23px] items-center ${
             isOpenFaqAccordion ? "mb-[13px]" : ""
           }`}
           onClick={toggleAccordion}

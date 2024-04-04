@@ -64,15 +64,15 @@ const HomePage = ({ className }) => {
           Special Needs Companion
         </h2>
         <ChatInput className="w-full md:w-[70%]" />
-        <p className="text-center w-full md:w-[70%] text-sm md:text-md">
+        {/* <p className="text-center w-full md:w-[70%] text-sm md:text-md">
           <em>
             Prach AI Chatbot is designed to offer Support and Information. Our
             conversations do not replace Medical Advice
           </em>
-        </p>
+        </p> */}
       </div>
       <div className="flex flex-col items-center gap-4">
-        <div className="text-[18px] md:text-[20px] leading-[31px] text-[#8B8B8B] redHatBold mt-6">
+        <div className="text-[18px] md:text-[20px] leading-[31px] text-[#000000] redHatBold mt-6">
           Frequently Asked Questions
         </div>
         <div className="gap-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">

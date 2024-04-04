@@ -86,7 +86,7 @@ const Sidebar = () => {
       <div className="">
         <span className="flex items-center gap-2 md:gap-2">
           <img src={logo} alt="Prach Logo" className="w-[75px] h-[75px]" />
-          <span className="font-bold text-center redHatBold text-[16px] md:text-[18px] leading-[26px] md:leading-[26px] w-[60%]">
+          <span className="font-bold text-center redHatBold text-[14px] md:text-[16px] w-[60%]">
             Special Needs Companion
           </span>
           {/* {Object.keys(signerData).length > 0 && signerData?.verified_email ? (

@@ -10,8 +10,34 @@ import { BsClipboard2 } from "react-icons/bs";
 const AnswerComponent = ({ answer, obj }) => {
   const lastWordStringIndex = answer.substring(0, obj.viewed);
   const [displayedText, setDisplayedText] = useState("");
+  const checkAnchorTagInText = (text, extract) => {
+    // Check if we're cutting off inside an <a> tag
+    const lastOpenTag = extract.lastIndexOf("<a");
+    const lastCloseTag = extract.lastIndexOf("</a>");
+
+    // If there's an opening tag after the last closing tag, we're cutting off inside a tag
+    if (lastOpenTag > lastCloseTag) {
+      // Find the end of the <a> tag in the original text
+      const endOfTag = text.indexOf("</a>", lastOpenTag);
+
+      // If endOfTag is not found, something went wrong, return the initial extract
+      if (endOfTag === -1) {
+        return extract;
+      }
+
+      // Adjust the extract to include the full <a> tag
+      extract = text.substring(0, endOfTag + 4);
+    }
+    return extract;
+  };
   useEffect(() => {
-    setDisplayedText(answer.substring(0, lastWordStringIndex.lastIndexOf(" ")));
+    // setDisplayedText(answer.substring(0, lastWordStringIndex.lastIndexOf(" ")));
+    setDisplayedText(
+      checkAnchorTagInText(
+        answer,
+        answer.substring(0, lastWordStringIndex.lastIndexOf(" "))
+      )
+    );
   }, [answer]);
   const [textLength, setTextLength] = useState(
     lastWordStringIndex.lastIndexOf(" ")
@@ -23,11 +49,20 @@ const AnswerComponent = ({ answer, obj }) => {
     const lastSpaceIndexInString = substring.lastIndexOf(" ");
 
     if (answer.length - nextViewed < 100) {
-      setDisplayedText(answer.substring(0, answer.length));
+      // setDisplayedText(answer.substring(0, answer.length));
+      setDisplayedText(
+        checkAnchorTagInText(answer, answer.substring(0, answer.length))
+      );
       setShowMore(false);
       setTextLength(answer.length);
     } else {
-      setDisplayedText(answer.substring(0, lastSpaceIndexInString));
+      // setDisplayedText(answer.substring(0, lastSpaceIndexInString));
+      setDisplayedText(
+        checkAnchorTagInText(
+          answer,
+          answer.substring(0, lastSpaceIndexInString)
+        )
+      );
       setShowMore(displayedText.length < answer.length);
       setTextLength(lastSpaceIndexInString);
     }

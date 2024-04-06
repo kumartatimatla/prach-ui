@@ -47,3 +47,21 @@ export const sendLogoutData = async (id) => {
   }
   return resp;
 };
+
+export const getIdResult = async (data) => {
+  let resp = null;
+  try {
+    resp = await axios.post(
+      "https://www.prach.org:5001/retrieve_response",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  } catch (error) {
+    resp = error.message;
+  }
+  return resp;
+};

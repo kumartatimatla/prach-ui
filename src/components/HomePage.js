@@ -61,7 +61,7 @@ const HomePage = ({ className }) => {
           />
         </div>
         <h2 className="text-2xl font-bold text-center redHatBold text-[16px] md:text-[22px] leading-[20px] md:leading-[43px] w-[60%]">
-          Special Needs Companion
+          Neurodiverse Companion
         </h2>
         <ChatInput className="w-full md:w-[70%]" />
         {/* <p className="text-center w-full md:w-[70%] text-sm md:text-md">

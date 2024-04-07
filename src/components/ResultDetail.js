@@ -6,7 +6,8 @@ import { isMobile } from "react-device-detect";
 import { getIdResult } from "./services";
 
 const ResultDetail = () => {
-  const { id } = useParams();
+  const { id, question } = useParams();
+  // console.log("params", useParams());
   const context = useContext(AppContext);
   const {
     isOpenSidebar,
@@ -20,7 +21,6 @@ const ResultDetail = () => {
     setIsOpenChatAccordion,
   } = context;
 
-  console.log(id);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const ResultDetail = () => {
       // console.log(result);
       // let result = response.data.result.choices[0].message.content;
       // console.log("idan", idAnswer);
-      let result = response.data.choices[0].message.content;
+      let result = response.data.result[0];
       if (result) {
         let outputString = result.replace(/\n/g, " <br/>");
         // Define the regular expression to match the pattern
@@ -50,7 +50,7 @@ const ResultDetail = () => {
         });
         let mssgObject = {};
         // mssgObject.id = uuidv4();
-        mssgObject.question = "question";
+        mssgObject.question = question;
         var urlRegex = /(?:<|\()?((https?:\/\/[^\s<>\)]+))(?:>|\))?/g;
 
         // Function to replace the matched URL and surrounding characters
@@ -102,7 +102,7 @@ const ResultDetail = () => {
         }
 
         mssgObject.answer = formattedText;
-        mssgObject.id = response.data.result.id;
+        mssgObject.id = id;
         // const answerSubString = outputString.substring((0, 1000));
         // const lastSpaceIndex = answerSubString.lastIndexOf(" ");
         mssgObject.viewed = 1000;
@@ -113,7 +113,7 @@ const ResultDetail = () => {
         setChatHistory(chatHistory);
         setEnteredPrompt("");
         setLoading(false);
-        setCloseModal(true);
+        // setCloseModal(true);
         setIsOpenChatAccordion(true);
         navigate("/results");
       }

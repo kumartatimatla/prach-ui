@@ -8,7 +8,7 @@ import Sidebar from "./Sidebar";
 import loadingLogo from "../images/logo-without-name.svg";
 import { isMobile, isTablet, isIPad13, isAndroid } from "react-device-detect";
 import Feedback from "./Feedback";
-import { BsClipboard2 } from "react-icons/bs";
+import { FaRegShareFromSquare } from "react-icons/fa6";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // import { WhatsappShareButton } from "react-share";
 // import whatsappIcon from "../images/whatsapp-icon.png";
@@ -119,14 +119,14 @@ const Results = () => {
                 {item.question}
 
                 <CopyToClipboard
-                  text={`${baseUrl}/results/${item.id}`}
+                  text={`${baseUrl}/results/${item.id}/${item.question}`}
                   onCopy={() => handleTextCopy(item.id)}
                 >
                   <button
                     // onClick={() => handleCopyClick(item.id)}
                     className="cursor-pointer relative"
                   >
-                    <BsClipboard2 className="scale-1 hover:scale-[0.9] h-[20px] w-[20px]" />
+                    <FaRegShareFromSquare className="ml-2 scale-1 hover:scale-[0.9] h-[20px] w-[20px]" />
                     <span className="text-sm redHatRegular absolute top-[150%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg py-1 px-2">
                       {item.id === textCopied && "copied!"}
                     </span>

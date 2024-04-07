@@ -59,6 +59,10 @@ const Header = ({ className }) => {
     navigate(`/`);
   };
 
+  const openTermsOfUse = () => {
+    window.open("documents/Prach Terms of Service.pdf", "_blank");
+  };
+
   return (
     <nav
       id="header"
@@ -142,6 +146,7 @@ const Header = ({ className }) => {
                   key="terms-of-use"
                   className="flex redHatMedium text-[14px]"
                   startContent={<img src={termsOfUse} alt="" />}
+                  onClick={openTermsOfUse}
                 >
                   Terms of use
                 </DropdownItem>

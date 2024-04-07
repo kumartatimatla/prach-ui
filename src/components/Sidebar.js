@@ -53,9 +53,6 @@ const Sidebar = () => {
   //   }
   // }, [chatHistory]);
 
-  console.log("chatAcc", context.isOpenChatAccordion);
-  console.log("faqAcc", context.isOpenFaqAccordion);
-  console.log("chat history", chatHistory);
   const logOut = async () => {
     googleLogout();
     await sendLogoutData(signerData?.id);

@@ -29,7 +29,7 @@ const HomePage = ({ className }) => {
     if (Object.keys(signerData).length > 0 && signerData?.verified_email) {
       navigate("/results");
     }
-  }, [signerData]);
+  }, [navigate, signerData]);
 
   const handleCardClick = (e) => {
     let prompt = e.currentTarget.name;

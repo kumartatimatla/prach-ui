@@ -33,7 +33,6 @@ const ChatHistoryAccordion = () => {
   };
 
   useEffect(() => {
-    console.log("inside");
     if (chatHistory.length > 0) {
       setIsOpenFaqAccordion(false);
       setIsOpenChatAccordion(true);

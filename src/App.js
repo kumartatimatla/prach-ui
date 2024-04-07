@@ -180,7 +180,11 @@ function App() {
               }
             />
             <Route path="/results" exact element={<Results />} />
-            <Route path="/results/:id" exact element={<ResultDetail />} />
+            <Route
+              path="/results/:id/:question"
+              exact
+              element={<ResultDetail />}
+            />
             <Route path="/history" exact element={<History />} />
             <Route path="/my-story" exact element={<MyStory />} />
           </Routes>

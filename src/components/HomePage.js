@@ -98,7 +98,9 @@ const HomePage = ({ className }) => {
         >
           {!showMoreCards ? (
             <>
-              <span className="redHatBold">+ 8 More</span>
+              <span className="redHatBold">
+                + {suggestedCardsData.length - 4} More
+              </span>
               <img src={moreIcon} alt="show more" />
             </>
           ) : (

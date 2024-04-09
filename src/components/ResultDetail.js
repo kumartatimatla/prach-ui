@@ -6,7 +6,7 @@ import { isMobile } from "react-device-detect";
 import { getIdResult } from "./services";
 
 const ResultDetail = () => {
-  const { id, question } = useParams();
+  const { id } = useParams();
   // console.log("params", useParams());
   const context = useContext(AppContext);
   const {
@@ -32,7 +32,7 @@ const ResultDetail = () => {
       // console.log(result);
       // let result = response.data.result.choices[0].message.content;
       // console.log("idan", idAnswer);
-      let result = response.data.result[0];
+      let result = response.data.result[1];
       if (result) {
         let outputString = result.replace(/\n/g, " <br/>");
         // Define the regular expression to match the pattern
@@ -50,7 +50,7 @@ const ResultDetail = () => {
         });
         let mssgObject = {};
         // mssgObject.id = uuidv4();
-        mssgObject.question = question;
+        mssgObject.question = response.data.result[0];
         var urlRegex = /(?:<|\()?((https?:\/\/[^\s<>\)]+))(?:>|\))?/g;
 
         // Function to replace the matched URL and surrounding characters

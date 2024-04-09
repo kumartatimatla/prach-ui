@@ -85,11 +85,6 @@ const data2 = [
     iconSrc: placeholder_1,
   },
   {
-    title: "What are PANDAS and PAN?",
-    subTitle: "",
-    iconSrc: placeholder_1,
-  },
-  {
     title: "Common Food Allergies in Autistic Kids and recommended diets?",
     subTitle: "",
     iconSrc: placeholder_1,

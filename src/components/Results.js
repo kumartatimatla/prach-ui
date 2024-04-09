@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
 import AnswerComponent from "./AnswerComponent";
 import { Button, Divider, useDisclosure } from "@nextui-org/react";
@@ -93,6 +93,17 @@ const Results = () => {
     }, 5000);
   };
 
+  const trackEvent = useCallback(() => {
+    // Check if gtag function is available
+    if (window.gtag) {
+      // Send an event to Google Analytics
+      window.gtag("event", "copy_link", {
+        event_category: "user_interaction",
+        event_label: "link_copied",
+      });
+    }
+  }, []);
+
   return (
     <div
       className={`${!isOpenSidebar ? "flex items-center justify-center" : ""}`}
@@ -119,11 +130,11 @@ const Results = () => {
                 {item.question}
 
                 <CopyToClipboard
-                  text={`${baseUrl}/results/${item.id}/${item.question}`}
+                  text={`${baseUrl}/results/${item.id}`}
                   onCopy={() => handleTextCopy(item.id)}
                 >
                   <button
-                    // onClick={() => handleCopyClick(item.id)}
+                    onClick={trackEvent}
                     className="cursor-pointer relative"
                   >
                     <FaRegShareFromSquare className="ml-2 scale-1 hover:scale-[0.9] h-[20px] w-[20px]" />
